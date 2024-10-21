@@ -1,0 +1,432 @@
+[
+    {
+        "file": "C:\\Programming\\Python\\Games\\Snappy Triggers\\Old Versions\\multiplayerClient V1.1.py",
+        "contents": [
+            {
+                "header": "def startGame(fps, volume, roomNo, playerNo, gameDir):",
+                "docstring": "\"\"\" Starts the single player gamemode \"\"\"",
+                "body": {
+                    "bodyBefore": "pygame.init()  # Initialises the pygame module\n    pygame.font.init()\n    \n    # Define values\n    DISPLAY_WIDTH, DISPLAY_HEIGHT = 1280, 720\n    CROSSHAIR_WIDTH, CROSSHAIR_HEIGHT = 50, 50\n    BLACK, DARK_GRAY, LIGHT_GRAY, WHITE = (0, 0, 0), (100, 100, 100), (204, 204, 204), (255, 255, 255)\n    COLORS = {\"blue\": (0, 134, 217), \"red\": (255, 34, 0), \"green\": (10, 194, 62), \"yellow\": (242, 222, 0)}\n    DARK_GREEN = (2, 122, 18)\n    CENTER_TOLERANCE = 10\n    EXCLAM_SPACING = 10\n    SCROLL_EVENT = 1027\n    MAX_AMMO = 10\n    NO_LEVELS = 3\n    GUN_POWER = 0.5\n    \n    score = 0\n    x, y = pygame.mouse.get_pos()\n    x1, y1 = x, y\n    \n    # Create pygame window\n    surface = pygame.HWSURFACE | pygame.DOUBLEBUF\n    gameDisplay = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT), surface)  # Creates a pygame surface object\n    pygame.display.set_caption(\"Shooter - Multiplayer\")  # Set a window title\n    \n    clock = pygame.time.Clock()\n    \n    # Create data for players\n    shelfFile = shelve.open(str(gameDir / Path(\"Rooms\", str(roomNo))))\n    playerData = shelfFile[\"Players\"]\n    playerData[playerNo-1][\"status\"] = \"In game\"\n    shelfFile[\"Players\"] = playerData\n    shelfFile.close()\n    \n    waitLoop = True\n    quitGame = False\n\n    while waitLoop:\n        for event in pygame.event.get():\n            \n            if event.type == pygame.QUIT:\n                waitLoop = False\n                quitGame = True\n                    \n        gameDisplay.fill(BLACK)\n    \n        # Draw text in window\n",
+                    "prefix": "        text = createText(\"Waiting for players ",
+                    "removedWords": "to get ready...\", 100, WHITE)",
+                    "bodyAfter": "\n        gameDisplay.blit(text, (DISPLAY_WIDTH//2 - text.get_width()//2, 100))\n        \n        # Check other players\n        shelfFile = shelve.open(str(gameDir / Path(\"Rooms\", str(roomNo))))\n        playerData = shelfFile[\"Players\"]\n        if set([player[\"status\"] for player in playerData]) == {\"In game\"}:\n            waitLoop = False\n                    \n        pygame.display.update()\n        clock.tick(fps)\n        \n    print(\"Everyone is ready\")\n    pygame.quit()",
+                    "numWordsRemoved": 7
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\Snappy Triggers\\Old Versions\\singlePlayer V1.3.py",
+        "contents": [
+            {
+                "header": "def __init__(self, sprite_image, x, y):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "pygame.sprite.Sprite.__init__(self)\n        self.image = pygame.image.load(sprite_image).convert_alpha()\n        self.mask = pygame.mask.from_surface(self.image)\n",
+                    "prefix": "        self.rect = ",
+                    "removedWords": "self.image.get_rect(center=(x, y))",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 4
+                }
+            },
+            {
+                "header": "def createTarget(targetGrid):",
+                "docstring": "\"\"\"Creates a target\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "targetCoords = targetGrid.pop(randrange(len(targetGrid))) # Randomly ",
+                    "removedWords": "takes out a pair of coordinates",
+                    "bodyAfter": "\n    target = Target(\"Images/Target.png\", targetCoords[0], targetCoords[1])\n    sprite_group.add(target)\n    target_group.add(target)\n    return targetGrid",
+                    "numWordsRemoved": 6
+                }
+            },
+            {
+                "header": "def targetShot(self):",
+                "docstring": null,
+                "body": "pass"
+            },
+            {
+                "header": "def moveBy(self, dx, dy):",
+                "docstring": "\"\"\" Moves cursor \"\"\"",
+                "body": "self.rect.move_ip(dx, dy)"
+            },
+            {
+                "header": "def __init__(self, sprite_image, x, y):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "pygame.sprite.Sprite.__init__(self)\n        self.image = pygame.image.load(sprite_image).convert_alpha()\n        self.mask = pygame.mask.from_surface(self.image)\n",
+                    "prefix": "        self.x, self.",
+                    "removedWords": "y = x, y",
+                    "bodyAfter": "\n        self.rect = self.image.get_rect(center=(self.x, self.y))",
+                    "numWordsRemoved": 4
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\Snappy Triggers\\Old Versions\\Shooter V2.1.py",
+        "contents": [
+            {
+                "header": "def updateDetails(self):",
+                "docstring": "\"\"\"Allows user to change login details\"\"\"",
+                "body": "self.register_page()"
+            },
+            {
+                "header": "def submitReview(self):",
+                "docstring": "\"\"\"Adds review to database\"\"\"",
+                "body": {
+                    "bodyBefore": "if self.rating.get() == 0:\n            # If rating has not been selected\n            tk.messagebox.showwarning(\"Error\", \"Please select a Rating\")\n        else:\n            comment = self.entry_comments.get(1.0, \"end\").strip()\n            if comment == \"Type here:\" or comment == \"\":\n",
+                    "prefix": "                ",
+                    "removedWords": "comment = \" \"",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 3
+                }
+            },
+            {
+                "header": "def cleanText(self, event):",
+                "docstring": "\"\"\"Cleans default text\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "if self.entry_comments.get(1.0, \"end\").strip()",
+                    "removedWords": " == \"Type here:\":",
+                    "bodyAfter": "\n            self.entry_comments.delete(1.0, \"end\")",
+                    "numWordsRemoved": 3
+                }
+            },
+            {
+                "header": "def viewProfile(self):",
+                "docstring": "\"\"\"Shows Player information\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "# Searches for data",
+                    "removedWords": " in database",
+                    "bodyAfter": "\n        self.sheet = self.connectToSheet()",
+                    "numWordsRemoved": 2
+                }
+            },
+            {
+                "header": "def fill_password(self, event):",
+                "docstring": "\"\"\"Fills out password if saved\"\"\"",
+                "body": "password = self.saved_logins[self.entry_username.get()]\n        self.entry_password.delete(0, \"end\")\n        self.entry_password.insert(0, password)\n        self.checkbox.select()"
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\Snappy Triggers\\main.py",
+        "contents": [
+            {
+                "header": "def specialThanks(self):",
+                "docstring": "\"\"\"Shows details about the creator and testers of the game\"\"\"",
+                "body": {
+                    "bodyBefore": "self.credWin = self.createWindow(\"Snappy Triggers - Credits\", \"600x380+100+50\")\n        \n        # Write labels\n        tk.Label(self.credWin, text=\"Shooter made By Alexander Shemaly 2021\", font=\"Arial 18 bold\",\n                 bg=\"gray10\", fg=\"grey70\").pack(pady=10)\n        \n        tk.Label(self.credWin, text=\"Special Thanks to...\", font=\"Arial 32 bold\", bg=\"gray10\", fg=\"white\").pack(pady=10)\n        \n        for person in [\"Stroia\", \"Logan\", \"Sam\"]:\n",
+                    "prefix": "            tk.Label(self.credWin,",
+                    "removedWords": " text=person, font=\"Arial 18 bold\", bg=\"gray10\", fg=\"gray70\").pack(pady=10)",
+                    "bodyAfter": "\n        \n        tk.Label(self.credWin, text=\"For testing the first version of the game\", font=\"Arial 18 bold\",\n                 bg=\"gray10\", fg=\"white\").pack(pady=10)",
+                    "numWordsRemoved": 7
+                }
+            },
+            {
+                "header": "def register(self, sendHome):",
+                "docstring": "\"\"\"Checks if conditions met, then registers Account\"\"\"",
+                "body": "self.username = self.entry_username.get().strip()\n        self.password = self.entry_password.get()\n        self.nickname = self.entry_nickname.get().strip()\n        self.picUrl = self.entry_picUrl.get().strip()"
+            },
+            {
+                "header": "def updateOptions(self):",
+                "docstring": "\"\"\"Updates Options\"\"\"",
+                "body": {
+                    "bodyBefore": "self.gameFPS = int(self.entry_FPS.get())\n",
+                    "prefix": "        self.gameVolume =",
+                    "removedWords": " self.entry_Volume.get() / 100",
+                    "bodyAfter": "\n        self.gameColor = self.entry_Color.get().lower()",
+                    "numWordsRemoved": 5
+                }
+            },
+            {
+                "header": "def updateScores(self):",
+                "docstring": "\"\"\"Update spreadsheet with new info\"\"\"",
+                "body": "self.sheet = self.connectToSheet()"
+            },
+            {
+                "header": "def cleanText(self, event):",
+                "docstring": "\"\"\"Cleans default text\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "if self.entry_comments.get(1",
+                    "removedWords": ".0, \"end\").strip() == \"Type here:\":",
+                    "bodyAfter": "\n            self.entry_comments.delete(1.0, \"end\")",
+                    "numWordsRemoved": 6
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\Snappy Triggers\\Old Versions\\Shooter V3.1.5.py",
+        "contents": [
+            {
+                "header": "def destroyRoot(self):",
+                "docstring": "\"\"\"Checks if mutliplayer room needs to be destroyed\"\"\"",
+                "body": "try:\n            self.roomNo\n            self.playerNo\n        except Exception:\n            pass\n        else:\n            self.playerLeftRoom(self.roomNo, self.playerNo)\n        self.root.destroy()"
+            },
+            {
+                "header": "def playerLeftRoom(self, roomNo, playerNo):",
+                "docstring": "\"\"\"Makes changes to data files\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "shelfFile = ",
+                    "removedWords": "shelve.open(str(self.multiRDir / Path(str(roomNo))))",
+                    "bodyAfter": "\n        playerData = shelfFile[\"Players\"]\n        while True:\n            try:\n                del playerData[playerNo-1]\n            except Exception:\n                playerNo -= 1\n            else:\n                break\n        shelfFile[\"Players\"] = playerData\n        shelfFile.close()\n        \n        if not playerData:\n            self.delRoom(roomNo)\n        self.roomMenu.destroy()\n        del self.roomNo",
+                    "numWordsRemoved": 5
+                }
+            },
+            {
+                "header": "def logIn_page(self, sendHome=True):",
+                "docstring": "\"\"\"Opens window for logging in\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "self.logIn = self.createWindow(\"Shooter - Log",
+                    "removedWords": " In\", \"500x350+100+50\")",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 3
+                }
+            },
+            {
+                "header": "def register_help(self):",
+                "docstring": "\"\"\"Opens help window on register page\"\"\"",
+                "body": {
+                    "bodyBefore": "tk.messagebox.showinfo(\"Help\", \"Your Username is unique to your account. It is used for \"\n                                       \"logging in and is the name displayed on the leaderboards.\\n\\nYour Nickname is \"\n                                       \"the name displayed in-game and multiple accounts can have the same Nickname. \"\n                                       \"If no Nickname is given, then your username is used by default.\\n\\nTo add a \"\n",
+                    "prefix": "                               ",
+                    "removedWords": "        \"profile picture, find the image online and copy and paste the image location \"",
+                    "bodyAfter": "\n                                       \"into the URL box.\\n\\nClicking Remember me will automatically log you in, \"\n                                       \"everytime the game is run. WARNING: If the game file is placed in a network \"\n                                       \"storage, then saved logins will appear on all computers in that network.\")",
+                    "numWordsRemoved": 5
+                }
+            },
+            {
+                "header": "def register(self, sendHome):",
+                "docstring": "\"\"\"Checks if conditions met, then registers Account\"\"\"",
+                "body": "self.username = self.entry_username.get().strip()\n        self.password = self.entry_password.get()\n        self.nickname = self.entry_nickname.get().strip()\n        self.picUrl = self.entry_picUrl.get().strip()"
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\Snappy Triggers\\Old Versions\\singlePlayer V6.5.py",
+        "contents": [
+            {
+                "header": "def resetCursor(self, x, y):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "self.",
+                    "removedWords": "rect = self.image.get_rect(center=(x, y))",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 6
+                }
+            },
+            {
+                "header": "def __init__(self, sprite_image, x, y):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "pygame.sprite.Sprite.__init__(self)\n        self.image = pygame.image.load(sprite_image).convert_alpha()\n        self.mask = pygame.mask.from_surface(self.image)\n",
+                    "prefix": "        self.rect = self.image.",
+                    "removedWords": "get_rect(center=(x, y))",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 2
+                }
+            },
+            {
+                "header": "def createEnemy(enemyGrid, levelValues, levelEnemies, sprite_group, enemy_group, enemy_spawning, volume):",
+                "docstring": "\"\"\"Creates an enemy\"\"\"",
+                "body": {
+                    "bodyBefore": "enemyCoords = enemyGrid.pop(randrange(len(enemyGrid))) # Randomly takes out a pair of coordinates\n    \n    e = levelEnemies.pop(randrange(len(levelEnemies))) # Randomly takes out an enemy\n    \n    if levelValues[\"reverse\"] and enemyCoords[0] == levelValues[\"loc\"][\"xEnd\"]:\n        reverse = True\n    else:\n        reverse = False\n        \n",
+                    "prefix": "    enemy = levelValues[\"enemyClass\"](e[\"name\"], enemyCoords[0],",
+                    "removedWords": " enemyCoords[1], e[\"pAwarded\"], e[\"bpAwarded\"],",
+                    "bodyAfter": "\n                                     e[\"spFrames\"], e[\"shFrames\"], volume, reverse, e[\"idFrames\"], e[\"moveVal\"])\n        \n    sprite_group.add(enemy)\n    enemy_group.add(enemy)\n    if enemy.SPAWNFRAMES > 0:\n        enemy_spawning.append(enemy)\n    return enemyGrid, levelEnemies, sprite_group, enemy_group, enemy_spawning",
+                    "numWordsRemoved": 3
+                }
+            },
+            {
+                "header": "def configColor(self, sprite_image):",
+                "docstring": "\"\"\" Changes image used for cursor \"\"\"",
+                "body": "self.image = pygame.image.load(sprite_image).convert_alpha()\n        self.mask = pygame.mask.from_surface(self.image)"
+            },
+            {
+                "header": "def moveBy(self, dx, dy):",
+                "docstring": "\"\"\" Moves cursor \"\"\"",
+                "body": "self.rect.move_ip(dx, dy)"
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\Snappy Triggers\\Old Versions\\singlePlayer V2.4.py",
+        "contents": [
+            {
+                "header": "def resetImage(self):",
+                "docstring": null,
+                "body": "self.image = pygame.image.load(self.sprite_image)\n        self.frameNo = 1"
+            },
+            {
+                "header": "def shotAnimation(self):",
+                "docstring": null,
+                "body": "self.image = pygame.image.load(f\"Images\\Target_Break{int(self.frameNo//1)}.png\")\n        self.frameNo += 0.5"
+            },
+            {
+                "header": "def createTarget(targetGrid):",
+                "docstring": "\"\"\"Creates a target\"\"\"",
+                "body": {
+                    "bodyBefore": "targetCoords = targetGrid.pop(randrange(len(targetGrid))) # Randomly takes out a pair of coordinates\n",
+                    "prefix": "    ",
+                    "removedWords": "target = Target(\"Images/Target.png\", targetCoords[0], targetCoords[1])",
+                    "bodyAfter": "\n    sprite_group.add(target)\n    target_group.add(target)\n    target_spawning.append(target)\n    return targetGrid",
+                    "numWordsRemoved": 6
+                }
+            },
+            {
+                "header": "def moveBy(self, dx, dy):",
+                "docstring": "\"\"\" Moves cursor \"\"\"",
+                "body": "self.rect.move_ip(dx, dy)"
+            },
+            {
+                "header": "def __init__(self, sprite_image, x, y):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "pygame.sprite.Sprite.__init__(self)\n        self.image = pygame.image.load(sprite_image).convert_alpha()\n        self.mask = pygame.mask.from_surface(self.image)\n",
+                    "prefix": "      ",
+                    "removedWords": "  self.rect = self.image.get_rect(center=(x, y))",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 8
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\Snappy Triggers\\Old Versions\\singlePlayer V3.6.py",
+        "contents": [
+            {
+                "header": "def __init__(self, sprite_image, x, y):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "pygame.sprite.Sprite.__init__(self)\n        self.image = pygame.image.load(sprite_image).convert_alpha()\n        self.mask = pygame.mask.from_surface(self.image)\n",
+                    "prefix": "      ",
+                    "removedWords": "  self.rect = self.image.get_rect(center=(x, y))",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 8
+                }
+            },
+            {
+                "header": "def quitGame():",
+                "docstring": "\"\"\" Shows pop-up box before closing game \"\"\"",
+                "body": {
+                    "bodyBefore": "nonlocal endGame\n",
+                    "prefix": "        response = tk.messagebox.askyesno(\"Quit Game\", \"Are you",
+                    "removedWords": " sure you want to quit the game?\\",
+                    "bodyAfter": "\n                                          \\n\\nAll progress will be lost.\", icon=\"warning\")\n        if response:\n            root.destroy()\n            endGame = True",
+                    "numWordsRemoved": 7
+                }
+            },
+            {
+                "header": "def moveBy(self, dx, dy):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "self.rect = self.image.get_rect(center=(dx",
+                    "removedWords": " + self.x, dy + self.y))",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 7
+                }
+            },
+            {
+                "header": "def updateVolume(self):",
+                "docstring": null,
+                "body": "self.shotAudio.set_volume(VOLUME)"
+            },
+            {
+                "header": "def resetImage(self):",
+                "docstring": null,
+                "body": "self.image = pygame.image.load(self.sprite_image)\n        self.frameNo = 1"
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\Snappy Triggers\\Old Versions\\singlePlayer V3.1.py",
+        "contents": [
+            {
+                "header": "def despawnAnimation(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.image = pygame.image.load(f\"Images\\{self.enemyType}_{int(self.frameNo//1)}.png\")\n",
+                    "prefix": "        self.image =",
+                    "removedWords": " pygame.transform.flip(self.image, True, False)",
+                    "bodyAfter": "\n        self.mask = pygame.mask.from_surface(self.image)\n        self.frameNo -= 0.5",
+                    "numWordsRemoved": 6
+                }
+            },
+            {
+                "header": "def resetImage(self):",
+                "docstring": null,
+                "body": "self.image = pygame.image.load(self.sprite_image)\n        self.frameNo = 1"
+            },
+            {
+                "header": "def shotSound(self):",
+                "docstring": null,
+                "body": "pygame.mixer.Sound.play(self.shotAudio)"
+            },
+            {
+                "header": "def spawnAnimation(self):",
+                "docstring": null,
+                "body": "self.image = pygame.image.load(f\"Images\\{self.enemyType}_{int(self.frameNo//1)}.png\")\n        self.mask = pygame.mask.from_surface(self.image)\n        self.frameNo += 0.5"
+            },
+            {
+                "header": "def moveBy(self, dx, dy):",
+                "docstring": "\"\"\" Moves cursor \"\"\"",
+                "body": "self.rect.move_ip(dx, dy)"
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\Snappy Triggers\\Old Versions\\singlePlayer V2.1.py",
+        "contents": [
+            {
+                "header": "def moveBy(self, dx, dy):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "self.rect = self.image.get_rect(center=(dx +",
+                    "removedWords": " self.x, dy + self.y))",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 6
+                }
+            },
+            {
+                "header": "def moveBy(self, dx, dy):",
+                "docstring": "\"\"\" Moves cursor \"\"\"",
+                "body": "self.rect.move_ip(dx, dy)"
+            },
+            {
+                "header": "def createTarget(targetGrid):",
+                "docstring": "\"\"\"Creates a target\"\"\"",
+                "body": {
+                    "bodyBefore": "targetCoords = targetGrid.pop(randrange(len(targetGrid))) # Randomly takes out a pair of coordinates\n",
+                    "prefix": "  ",
+                    "removedWords": "  target = Target(\"Images/Target.png\", targetCoords[0], targetCoords[1])",
+                    "bodyAfter": "\n    sprite_group.add(target)\n    target_group.add(target)\n    target_spawning.append(target)\n    return targetGrid",
+                    "numWordsRemoved": 7
+                }
+            },
+            {
+                "header": "def __init__(self, sprite_image, x, y):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "pygame.sprite.Sprite.__init__(self)\n        self.image = pygame.image.load(sprite_image).convert_alpha()\n        self.mask = pygame.mask.from_surface(self.image)\n",
+                    "prefix": "        self.",
+                    "removedWords": "x, self.y = x, y",
+                    "bodyAfter": "\n        self.rect = self.image.get_rect(center=(self.x, self.y))\n        self.frameNo = 1\n        self.sprite_image = sprite_image",
+                    "numWordsRemoved": 6
+                }
+            },
+            {
+                "header": "def spawnAnimation(self):",
+                "docstring": null,
+                "body": "self.image = pygame.image.load(f\"Images\\Target_{int(self.frameNo//1)}.png\")\n        self.mask = pygame.mask.from_surface(self.image)\n        self.frameNo += 0.5"
+            }
+        ]
+    }
+]

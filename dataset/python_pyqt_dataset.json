@@ -1,0 +1,533 @@
+[
+    {
+        "file": "C:\\Programming\\Python\\Smart Retain\\modules\\create\\textbookSnipper.py",
+        "contents": [
+            {
+                "header": "def closeEvent(self, event):",
+                "docstring": "\"\"\" Run when window gets closed \"\"\"",
+                "body": "self.superClass.show()"
+            },
+            {
+                "header": "def mousePressEvent(self, e):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "if e.button() == Qt.",
+                    "removedWords": "LeftButton:",
+                    "bodyAfter": "\n            # Start drawing\n            self.startX, self.startY = e.x()-10, e.y()",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def __init__(self, w, h, filename, snipCompleted):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "super().__init__()\n        pixmap = QPixmap(w, h)\n        pixmap.fill(Qt.white)\n        self.setPixmap(pixmap)\n",
+                    "prefix": "        self.w, self.h = w, ",
+                    "removedWords": "h",
+                    "bodyAfter": "\n        self.filename = filename\n        self.snipCompleted = snipCompleted\n        self.rectSet = False\n        self.show()",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def __init__(self, superClass, filename, uploadQuestFile, _type, duplicate):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "super().__init__()\n        self.superClass = superClass\n        self.setWindowTitle(\"Smart Retain\")\n        self.setWindowIcon(QIcon(\"images/logo.png\"))\n",
+                    "prefix": "        self.setGeometry(50, 50, 1000, ",
+                    "removedWords": "720)",
+                    "bodyAfter": "\n        self.uploadQuestFile = uploadQuestFile\n        self.duplicate = duplicate\n        self.type = _type\n        self.show()",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def mouseReleaseEvent(self, e):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.last_x = None\n        self.last_y = None\n        size = (self.endX - self.startX) * (self.endY - self.startY)\n        if size > 2000:\n            self.snipCompleted(self.startX, self.startY, self.endX, self.endY)\n        else:\n            self.last_x, self.last_y = None, None\n",
+                    "prefix": "            self.startX, self.startY = None, ",
+                    "removedWords": "None",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Smart Retain\\modules\\createCourse.py",
+        "contents": [
+            {
+                "header": "def createCourse(self):",
+                "docstring": "\"\"\" Creates files for course \"\"\"",
+                "body": {
+                    "bodyBefore": "coursePath = \"data/\" + self.nameEdit.text()\n        if self.color == \"#FFFFFF\":\n            # Select a random colour\n",
+                    "prefix": "            self.color = choice(COURSE_COLORS).",
+                    "removedWords": "strip()",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def addTopic(self):",
+                "docstring": "\"\"\" Adds topic to topic widget\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "name = self.topicEdit.",
+                    "removedWords": "text()",
+                    "bodyAfter": "\n        self.topicListWidget.addItem(name)\n        self.topics.append(name)\n        self.topicEdit.clear()\n        self.validateCourse()",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def validateTopic(self):",
+                "docstring": "\"\"\" Checks whether topic name is valid \"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "name = self.topicEdit.text().lower().",
+                    "removedWords": "strip()",
+                    "bodyAfter": "\n        if name and name not in [topic.lower() for topic in self.topics]:\n            self.addTopicBtn.setEnabled(True)\n        else:\n            self.addTopicBtn.setEnabled(False)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def selectColor(self):",
+                "docstring": "\"\"\" Opens colour picker window to select colour \"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "color = qt.QColorDialog.getColor()  # Opens colour picker ",
+                    "removedWords": "window",
+                    "bodyAfter": "\n        if color.isValid():\n            self.color = color.name()\n            self.colorLabel.setStyleSheet(f\"background-color: {self.color};border-style: outset;border-width: \"\n                                          f\"2px;border-radius: 5px;border-color: #303545;\")",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def selectPDF(self):",
+                "docstring": "\"\"\" Opens file dialog to select textbox pdf path \"\"\"",
+                "body": {
+                    "bodyBefore": "with open(\"text/currentSettings.json\") as f:\n",
+                    "prefix": "            data = json.",
+                    "removedWords": "load(f)",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Smart Retain\\modules\\create\\editSubtopics.py",
+        "contents": [
+            {
+                "header": "def allowBack(self, val):",
+                "docstring": "\"\"\" Change value of back \"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "self.back = ",
+                    "removedWords": "val",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def getSubtopics(self):",
+                "docstring": "\"\"\" Get subtopics from database \"\"\"",
+                "body": {
+                    "bodyBefore": "conn = sqlite3.connect(self.databasePath)\n",
+                    "prefix": "        c = conn.",
+                    "removedWords": "cursor()",
+                    "bodyAfter": "\n        topic = self.topicCombo.currentText()",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def closeEvent(self, event):",
+                "docstring": "\"\"\" Run when window gets closed \"\"\"",
+                "body": "self.allowBack(True)\n        self.superClass.show()"
+            },
+            {
+                "header": "def __init__(self, superClass, databasePath, fillComboBoxes):",
+                "docstring": "\"\"\" Main Window \"\"\"",
+                "body": {
+                    "bodyBefore": "super(Window, self).__init__()\n        uic.loadUi(\"gui/editSubtopics.ui\", self)\n        self.setWindowIcon(QIcon(\"images/logo.png\"))\n        self.superClass = superClass\n        self.databasePath = databasePath\n",
+                    "prefix": "        self.fillComboBoxes = ",
+                    "removedWords": "fillComboBoxes",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def loadSubtopics(self):",
+                "docstring": "\"\"\" Loads existing subtopics \"\"\"",
+                "body": {
+                    "bodyBefore": "conn = sqlite3.connect(self.databasePath)\n",
+                    "prefix": "        c = conn.",
+                    "removedWords": "cursor()",
+                    "bodyAfter": "\n        c.execute(\"SELECT subtopicName FROM subtopics\")\n        self.subtopicList = [topic[0].lower() for topic in c.fetchall()]\n        conn.close()",
+                    "numWordsRemoved": 1
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Smart Retain\\modules\\create\\createMethods.py",
+        "contents": [
+            {
+                "header": "def updateNoteNav(self):",
+                "docstring": "\"\"\" Update label and navigate buttons based on existing notes \"\"\"",
+                "body": {
+                    "bodyBefore": "conn = sqlite3.connect(self.databasePath)\n        c = conn.cursor()\n        c.execute(\"SELECT name FROM sqlite_master WHERE type='table' AND name='notes'\")\n        if c.fetchall():\n            c.execute(\"SELECT noteID FROM notes ORDER BY noteID\")\n",
+                    "prefix": "            noteList = [i[0] for i in c.",
+                    "removedWords": "fetchall()]",
+                    "bodyAfter": "\n        else:\n            noteList = []",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def fillComboBoxes(self):",
+                "docstring": "\"\"\" Inserts data into combo box \"\"\"",
+                "body": "self.getCourseData()"
+            },
+            {
+                "header": "def takeTextbookSnip(self, _type):",
+                "docstring": "\"\"\" Opens window to take snippet from current textbook page \"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "path = ",
+                    "removedWords": "\"images/temp/snip.png\"",
+                    "bodyAfter": "\n        img = Image.open(self.tempPath)\n        img.save(path)\n        self.w = textbookSnipper.Window(self, path, self.uploadQuestFile, _type, self.noteType == self.diagramBtn)\n        self.w.show()\n        self.hide()",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def paintOptionSelected(self, _type, option):",
+                "docstring": "\"\"\" Runs when paint window is closed \"\"\"",
+                "body": {
+                    "bodyBefore": "if _type == \"initial\":\n            if option == \"save\":\n                # Save image\n                self.diagramPath = \"images/temp/foo.png\"\n            elif option == \"delete\":\n                # Delete image\n                self.diagramPath = None\n        else:\n            if option == \"save\":\n                # Save image\n                self.ansDiagramPath = \"images/temp/foo2.png\"\n",
+                    "prefix": "            elif option == \"delete\"",
+                    "removedWords": ":",
+                    "bodyAfter": "\n                # Delete image\n                self.ansDiagramPath = None",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def addQuestPic(self, path):",
+                "docstring": "\"\"\" Opens window for adding a picture to the question \"\"\"",
+                "body": {
+                    "bodyBefore": "if (path == \"initial\" and self.diagramPath and self.diagramPath != \"blank\") or \\\n                (path == \"answer\" and self.ansDiagramPath):\n",
+                    "prefix": "            with open(\"text/currentSettings.json\") as ",
+                    "removedWords": "f:",
+                    "bodyAfter": "\n                data = json.load(f)",
+                    "numWordsRemoved": 1
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Smart Retain\\modules\\learn\\learnNotes.py",
+        "contents": [
+            {
+                "header": "def checkDefinitionAnswer(self):",
+                "docstring": "\"\"\" Checks text written to see whether it matches the answer \"\"\"",
+                "body": {
+                    "bodyBefore": "inputAns = self.answerEdit.toPlainText()\n",
+                    "prefix": "        ans = self.",
+                    "removedWords": "currentNote[\"answer\"]",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def tableChanged(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "if self.",
+                    "removedWords": "activateTableThread:",
+                    "bodyAfter": "\n            if self.tableHasCorrectAnswers():\n                self.revealTableAnswer()",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def generateMathQuestion(self):",
+                "docstring": "\"\"\" Generates formula question \"\"\"",
+                "body": {
+                    "bodyBefore": "# Connect to database\n        conn = sqlite3.connect(self.databasePath)\n",
+                    "prefix": "        c = conn.",
+                    "removedWords": "cursor()",
+                    "bodyAfter": "\n        c.execute(f\"SELECT name, symbol, unit, min, max, step FROM formulas f JOIN notes n ON \\\n                        f.formulaID = n.formulaID WHERE noteID = {self.currentNote['noteID']}\")\n        formulaVariables = [{\"name\": term[0], \"symbol\": term[1], \"unit\": term[2], \"min\": term[3], \"max\": term[4],\n                             \"step\": term[5]} for term in c.fetchall()]\n        conn.commit()\n        conn.close()",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def revealDefinition(self, correct=False):",
+                "docstring": "\"\"\" Shows definition answer \"\"\"",
+                "body": {
+                    "bodyBefore": "self.answerEdit.textChanged.disconnect()\n        ans = self.answerEdit.toPlainText()\n        self.answerEdit.setReadOnly(True)\n        self.insertDefinition()\n",
+                    "prefix": "        self.noteUpdateNeeded = ",
+                    "removedWords": "correct",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def setCorrect(self, correct):",
+                "docstring": "\"\"\" Sets whether question was correct or incorrect \"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "if ",
+                    "removedWords": "correct:",
+                    "bodyAfter": "\n            self.ding.play()",
+                    "numWordsRemoved": 1
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Smart Retain\\modules\\modImage.py",
+        "contents": [
+            {
+                "header": "def getCentralCoordinates(img, t):",
+                "docstring": "\"\"\" Returns coordinates of central image \"\"\"",
+                "body": {
+                    "bodyBefore": "# Find coordinates of main image\n    average = getAverageColor(img)\n    pix = numpy.array(img)\n    n, s, w, e = None, None, None, None\n\n    # North line\n    for y in range(img.height):\n        for pixel in pix[y]:\n            if tuple(pixel) != average:\n                n = y - t\n                break\n        if n:\n            break\n\n    if not n:\n        n = img.height // 2 - t\n    elif n < 0:\n        n = 0\n\n    # South line\n    for y in reversed(range(img.height)):\n        for pixel in pix[y]:\n            if tuple(pixel) != average:\n                s = y + t\n                break\n        if s:\n            break\n\n    if not s:\n        n = img.height // 2 + t\n    elif s > img.height - 1:\n        n = img.height - 1\n\n    # West line\n    for x in range(img.width):\n        for y in range(img.height):\n            if tuple(pix[y][x]) != average:\n                w = x - t\n                break\n        if w:\n            break\n\n    if not w:\n        w = img.width // 2 - t\n    elif w < 0:\n        w = 0\n\n    # East line\n    for x in reversed(range(img.width)):\n        for y in range(img.height):\n",
+                    "prefix": "            if tuple(pix[y][x]) != ",
+                    "removedWords": "average:",
+                    "bodyAfter": "\n                e = x + t\n                break\n        if e:\n            break\n\n    if not e:\n        e = img.width // 2 + t\n    elif e > img.width - 1:\n        e = img.width - 1\n\n    return n, s, w, e",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def getAverageColor(img):",
+                "docstring": "\"\"\" Returns the average colour used as the image border \"\"\"",
+                "body": {
+                    "bodyBefore": "pix = numpy.array(img)\n    border = [[], [], []]\n\n    # North border\n    for pixel in pix[0]:\n        for i in range(3):\n            border[i].append(pixel[i])\n\n    # South border\n    for pixel in pix[-1]:\n        for i in range(3):\n            border[i].append(pixel[i])\n\n    # West and East border\n    for j in range(img.height):\n",
+                    "prefix": "        for i in ",
+                    "removedWords": "range(3):",
+                    "bodyAfter": "\n            border[i].append(pix[j][0][i])\n            border[i].append(pix[j][-1][i])\n\n    return tuple([max(set(color), key=color.count) for color in border])",
+                    "numWordsRemoved": 1
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Smart Retain\\modules\\export\\exportNotes.py",
+        "contents": [
+            {
+                "header": "def addProcess(self, questionText, answerText, qImageNo):",
+                "docstring": "\"\"\"Adds paragraph to document\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "paragraph = self.doc.",
+                    "removedWords": "add_paragraph(\"\")",
+                    "bodyAfter": "\n        paragraph.add_run(questionText + \": \", style=\"8\")\n        \n        # If there is an image\n        if qImageNo:\n            answerText.insert(0, \"\")\n            self.addImage(qImageNo)\n        else:\n            paragraph = self.doc.add_paragraph(\"\")\n            \n        for i, text in enumerate(answerText):\n            for word in text.split():",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def closeEvent(self, event):",
+                "docstring": "\"\"\" Run when window gets closed \"\"\"",
+                "body": "self.superClass.show()"
+            },
+            {
+                "header": "def run(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "global window\n        doc = Doc()  # Create doc object\n",
+                    "prefix": "        doc.addTitle(f\"{window.courseName} ",
+                    "removedWords": "Notes\")",
+                    "bodyAfter": "\n        conn = sqlite3.connect(window.databasePath)\n        c = conn.cursor()",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def convertToDoc(self):",
+                "docstring": "\"\"\" Inserts values from database into document \"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "with open(\"text/currentSettings.json\") as ",
+                    "removedWords": "f:",
+                    "bodyAfter": "\n            data = json.load(f)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def showImportOptions(self):",
+                "docstring": "\"\"\" Allows user to import notes \"\"\"",
+                "body": {
+                    "bodyBefore": "with open(\"text/currentSettings.json\") as f:\n",
+                    "prefix": "            data = json.",
+                    "removedWords": "load(f)",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Smart Retain\\modules\\learn\\learnFilter.py",
+        "contents": [
+            {
+                "header": "def changeTopic(self, i):",
+                "docstring": "\"\"\" Changes the topic combo value \"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "topic = self.topicList[self.topicIndex + ",
+                    "removedWords": "i]",
+                    "bodyAfter": "\n        self.leftBtn.setEnabled(self.topicIndex + i > 0)\n        self.rightBtn.setEnabled(self.topicIndex + i < len(self.topicList) - 1)\n        self.topicCombo.setCurrentText(topic)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def updateMenuBar(self):",
+                "docstring": "\"\"\" Updates menu bar with course title \"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "# Load ",
+                    "removedWords": "widgets",
+                    "bodyAfter": "\n        self.title = self.findChild(qt.QLabel, \"title\")\n        fontColor = self.color.lstrip(\"#\")\n        lv = len(fontColor)\n        r, g, b = tuple(int(fontColor[i:i + lv // 3], 16) for i in range(0, lv, lv // 3))\n        if (r * 0.299 + g * 0.587 + b * 0.114) > 186:\n            fontColor = \"#000000\"\n        else:\n            fontColor = \"#FFFFFF\"",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def unselectList(self):",
+                "docstring": "\"\"\" Unselects all subtopics selected \"\"\"",
+                "body": {
+                    "bodyBefore": "selectedItems = [item.text() for item in self.subtopicWidget.selectedItems()]\n        if selectedItems:\n",
+                    "prefix": "            # Unselect ",
+                    "removedWords": "list",
+                    "bodyAfter": "\n            self.subtopicWidget.clearSelection()\n            self.currentTopicList[self.topicList[self.topicIndex]] = []\n            self.unselectBtn.setText(\"Unselect All Topics\")\n        else:\n            reply = qt.QMessageBox.warning(self, \"Are you Sure?\", \"Are you sure you want to unselect all topics and \" +\n                                           \"subtopics?\", qt.QMessageBox.Yes, qt.QMessageBox.No)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def resetTopics(self):",
+                "docstring": "\"\"\" Sets current topic list to default value \"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "self.currentTopicList = dict(self.",
+                    "removedWords": "subtopicList)",
+                    "bodyAfter": "\n        self.unselectBtn.setText(\"Unselect\")\n        self.nextTopic()",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def startLearning(self):",
+                "docstring": "\"\"\" Opens learn window \"\"\"",
+                "body": {
+                    "bodyBefore": "subtopics = list(chain.from_iterable(self.currentTopicList.values()))\n        starred = self.starBox.isChecked()\n",
+                    "prefix": "        focusWeak = self.weakBox.",
+                    "removedWords": "isChecked()",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Smart Retain\\modules\\courseOptions.py",
+        "contents": [
+            {
+                "header": "def closeEvent(self, event):",
+                "docstring": "\"\"\" Run when window gets closed \"\"\"",
+                "body": "self.superClass.show()"
+            },
+            {
+                "header": "def deleteNotes(self):",
+                "docstring": "\"\"\" Deletes all notes \"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "reply = qt.QMessageBox.warning(self, \"Are you sure?\", \"This cannot be undone\"",
+                    "removedWords": ",",
+                    "bodyAfter": "\n                                       qt.QMessageBox.Yes | qt.QMessageBox.Cancel)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def saveOptions(self):",
+                "docstring": "\"\"\" Makes changes if settings were changed \"\"\"",
+                "body": {
+                    "bodyBefore": "if self.nameEdit.text() != self.courseName or self.newColor != self.color:\n            # Changes need to be made\n            with open(f\"data/{self.courseName}/courseInfo.json\") as f:\n                content = json.load(f)\n                textbookPath = content[\"textbookPath\"]\n",
+                    "prefix": "                visitDates = ",
+                    "removedWords": "content[\"dateStudied\"]",
+                    "bodyAfter": "\n                scores = content[\"averageScores\"]",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def resetProgress(self):",
+                "docstring": "\"\"\" Resets progress \"\"\"",
+                "body": {
+                    "bodyBefore": "reply = qt.QMessageBox.warning(self, \"Are you sure?\", \"This cannot be undone\",\n",
+                    "prefix": "                                       qt.QMessageBox.Yes | qt.QMessageBox.",
+                    "removedWords": "Cancel)",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def __init__(self, superClass, course, color):",
+                "docstring": "\"\"\" Main Window \"\"\"",
+                "body": {
+                    "bodyBefore": "super(Window, self).__init__()\n",
+                    "prefix": "        uic.loadUi(\"gui/courseOptions.ui\", ",
+                    "removedWords": "self)",
+                    "bodyAfter": "\n        self.setWindowIcon(QIcon(\"images/logo.png\"))\n        self.superClass = superClass\n        self.courseName = course\n        self.color = color\n        self.newColor = color\n        self.databasePath = \"data/\" + course + \"/courseData.db\"\n        self.show()",
+                    "numWordsRemoved": 1
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Smart Retain\\modules\\create\\editTable.py",
+        "contents": [
+            {
+                "header": "def changeNoRows(self):",
+                "docstring": "\"\"\" Change number of rows \"\"\"",
+                "body": "self.tableChanged()"
+            },
+            {
+                "header": "def fillTable(self):",
+                "docstring": "\"\"\" Fills table using current values \"\"\"",
+                "body": {
+                    "bodyBefore": "if not self.tableValues:\n            # New tables\n            self.tableValues = [[{\"text\": \"ColumnA\", \"userFill\": False}, {\"text\": \"ColumnB\", \"userFill\": False}],\n",
+                    "prefix": "                                [{\"text\": \"Value1a\", \"userFill\": True}, {\"text\": \"Value1b\", \"userFill\": True}]",
+                    "removedWords": ",",
+                    "bodyAfter": "\n                                [{\"text\": \"Value2a\", \"userFill\": True}, {\"text\": \"Value2b\", \"userFill\": True}]]",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def __init__(self, superClass, tableValues, tableSubmitted):",
+                "docstring": "\"\"\" Main Window \"\"\"",
+                "body": {
+                    "bodyBefore": "super(Window, self).__init__()\n        uic.loadUi(\"gui/editTable.ui\", self)\n        self.setWindowIcon(QIcon(\"images/logo.png\"))\n        self.superClass = superClass\n        self.tableValues = copy.deepcopy(tableValues)\n",
+                    "prefix": "        self.originalTableValues = copy.",
+                    "removedWords": "deepcopy(tableValues)",
+                    "bodyAfter": "\n        self.tableSubmitted = tableSubmitted\n        self.twoWayTable = False",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def createOneWayTable(self):",
+                "docstring": "\"\"\" Fills table as one way \"\"\"",
+                "body": {
+                    "bodyBefore": "# Add headings\n        for i, name in enumerate(self.tableValues[0]):\n",
+                    "prefix": "            item = qt.",
+                    "removedWords": "QTableWidgetItem(name[\"text\"])",
+                    "bodyAfter": "\n            item.setFont(self.boldFont)\n            self.table.setItem(0, i, item)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def changeTableType(self):",
+                "docstring": "\"\"\" Changes one-way table to two-way and vice versa \"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "self.twoWayTable = self.twoWayCheck.",
+                    "removedWords": "isChecked()",
+                    "bodyAfter": "\n        if self.twoWayTable:\n            self.createTwoWayTable()\n        else:\n            self.createOneWayTable()",
+                    "numWordsRemoved": 1
+                }
+            }
+        ]
+    }
+]

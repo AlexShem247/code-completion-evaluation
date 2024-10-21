@@ -1,0 +1,406 @@
+[
+    {
+        "file": "C:\\Programming\\Python\\Games\\Mafia\\Mafia_Python_GUI.py",
+        "contents": [
+            {
+                "header": "def guess_the_name(self, players, suspicion_points):",
+                "docstring": "\"\"\"Guess the players name based of their face\"\"\"",
+                "body": {
+                    "bodyBefore": "self.is_button_pressed = False\n",
+                    "prefix": "        self.c.create_rectangle(0, 65, 800, 550, ",
+                    "removedWords": "fill=\"#212121\")",
+                    "bodyAfter": "\n        self.c.itemconfig(self.event_status, text=\"Free Time - Chat\")\n        self.players, self.suspicion_points = players, suspicion_points\n        self.random_player = choice(self.players)\n        self.img = Image.open(self.random_player[\"Photo\"])\n        self.img = self.img.resize((137, 180))\n        self.img = ImageTk.PhotoImage(self.img)\n        self.c.create_image(320, 70, anchor=NW, image=self.img)\n        self.c.create_text(40, 280, text=\"[???]: What is my name?\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n        self.window.update_idletasks() \n        time.sleep(1)\n        self.guess = self.c.create_text(40, 330, text=f\"[{self.p1_name}]: It's... \", anchor=NW, fill=\"gray70\", font=\"Arial 20\")",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def estimation_btn(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "if self.time_started == False:\n            self.start = time.time()\n            self.timer_btn.config(text=\"End Time\")\n            self.time_started = True\n        else:\n            self.end = round(time.time() - self.start, ndigits=1)\n            if self.end == float(self.seconds):\n                self.c.create_text(40, 170, text=f\"[{self.random_player['Name']}]: Your time was exactly {self.end} seconds, well done!\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n",
+                    "prefix": "                self.examine_players = ",
+                    "removedWords": "True",
+                    "bodyAfter": "\n            elif self.seconds-0.5 <= self.end <= self.seconds+0.5:\n                self.c.create_text(40, 170, text=f\"[{self.random_player['Name']}]: Your time was {self.end} seconds, but we will accept that.\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n                self.examine_players = True\n            else:\n                self.c.create_text(40, 170, text=f\"[{self.random_player['Name']}]: Sorry, your time was {self.end} seconds.\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n                self.c.create_text(40, 220, text=\"You did not earn permission to examine other players\\nthis round.\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n                \n            for widget in self.activity_frame.winfo_children():\n                widget.destroy()\n            Button(self.activity_frame, text=\"Next\", font=\"Arial 18 bold\", bg=\"#666666\", fg=\"white\", command=self.proceed).pack(ipadx=10)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def show_votes_2(self, text1, text2):",
+                "docstring": "\"\"\"Show text after vote\"\"\"",
+                "body": {
+                    "bodyBefore": "self.c.create_rectangle(0, 65, 800, 550, fill=\"#212121\")\n        self.c.create_text(40, 70, text=self.text_converter(text1) + \"\\n\\n\" + self.text_converter(text2), anchor=NW, fill=\"white\", font=\"Arial 20\")\n",
+                    "prefix": "        self.is_button_pressed = ",
+                    "removedWords": "False",
+                    "bodyAfter": "\n        Button(self.activity_frame, text=\"Next\", font=\"Arial 18 bold\", bg=\"#666666\", fg=\"white\", command=self.proceed).pack(ipadx=10)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def show_mingle_option(self, event):",
+                "docstring": "\"\"\"Shows reply option for mingle\"\"\"",
+                "body": {
+                    "bodyBefore": "self.reply_button.config(state=DISABLED, text=\"Reply\")\n        self.replies = []\n",
+                    "prefix": "        self.selected = self.chat_names.index(self.reply_players.",
+                    "removedWords": "get())",
+                    "bodyAfter": "\n        for reply in self.chat_list[self.selected][2]:\n            self.reply_text = reply\n            self.reply_text = self.reply_text.replace(\"opponent_name\", self.chat_player_list[-1][\"Name\"])\n            self.replies.append(self.reply_text)\n        \n        self.reply_players.delete(0, END)\n        self.reply_players.insert(0, self.chat_names[self.selected])\n        self.reply_options.config(state=NORMAL, values=self.replies)\n        self.reply_options.delete(0, END)\n        self.reply_options.insert(0, \"Select Reply\")\n        self.reply_options.bind(\"<<ComboboxSelected>>\", self.mingle_reply) \n        \n        if self.reply_players.get() == \"n/a\":\n            self.reply_options.delete(0, END)\n            self.reply_options.config(state=DISABLED)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def speed_clicker(self, players, examine_players):",
+                "docstring": "\"\"\"How fast can Player 1 click in 5 seconds\"\"\"",
+                "body": {
+                    "bodyBefore": "self.is_button_pressed = False\n        self.c.create_rectangle(0, 65, 800, 550, fill=\"#212121\")\n        self.c.itemconfig(self.event_status, text=\"Free Time - Challenge\")\n        self.players, self.examine_players = players, examine_players\n        \n        self.random_player = choice(players)\n        self.c.create_text(40, 70, text=self.text_converter(f\"[{self.random_player['Name']}]: Speed Test - Can you press clicked the button 30 times in 5 seconds?\") + \"\\nPress the button to start the timer.\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n        self.counter = 0\n        \n",
+                    "prefix": "        self.clicker = Button(self.activity_frame, text=\"Click Me\", font=\"Arial 18 bold\", bg=\"#666666\", fg=\"white\", command=self.",
+                    "removedWords": "clicked_btn)",
+                    "bodyAfter": "\n        self.clicker.pack(ipadx=10)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def guess_the_fact(self, players, suspicion_points, character_data):",
+                "docstring": "\"\"\"Guess the player's fact\"\"\"",
+                "body": {
+                    "bodyBefore": "self.is_button_pressed = False\n        self.c.create_rectangle(0, 65, 800, 550, fill=\"#212121\")\n        self.c.itemconfig(self.event_status, text=\"Free Time - Chat\")\n        self.players, self.suspicion_points, self.character_data = players, suspicion_points, character_data\n        \n        self.random_player = choice(self.players)\n        self.question_determiner = choice([\"Fav_Sport\", \"Fav_Animal\", \"Fav_Mafia Role\"])\n        self.answers = []\n        self.correct_answer = self.random_player[self.question_determiner]\n        self.answers.append(self.correct_answer)\n        for player in self.character_data:\n            if player[self.question_determiner] not in self.answers:\n                self.answers.append(player[self.question_determiner])\n            if len(self.answers) == 3:\n                break\n        shuffle(self.answers) \n            \n        self.c.create_text(40, 70, text=f\"[{self.random_player['Name']}]: Guess my favourite {self.question_determiner[4:]}.\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n        self.window.update_idletasks() \n        time.sleep(1)\n        self.guess = self.c.create_text(40, 150, text=f\"[{self.p1_name}]: It's... \", anchor=NW, fill=\"gray70\", font=\"Arial 20\")\n        \n        self.statement_box = ttk.Combobox(self.activity_frame, value=self.answers, font=\"Arial 18\", width=30)\n        self.statement_box.grid(row=0, column=0, ipadx=10, padx=10)\n        self.statement_box.delete(0, END)\n        self.statement_box.insert(0, \"Choose Answer\")\n        self.statement_box.bind(\"<<ComboboxSelected>>\", self.enable_statement_btn)\n",
+                    "prefix": "        self.statement_btn = Button(self.activity_frame, text=\"Confirm\", font=\"Arial 18 bold\", bg=\"#666666\", fg=\"white\", command=self.correct_fact, ",
+                    "removedWords": "state=DISABLED)",
+                    "bodyAfter": "\n        self.statement_btn.grid(row=0, column=1, ipadx=10, padx=10)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def enable_kill_button(self, event):",
+                "docstring": null,
+                "body": "self.kill_button.config(state=NORMAL)"
+            },
+            {
+                "header": "def start_typing(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "for widget in self.activity_frame.winfo_children():\n            widget.destroy()\n        self.statement_box = Entry(self.activity_frame, font=\"Arial 12\", width=60)\n",
+                    "prefix": "        self.statement_box.pack(ipadx=10, ",
+                    "removedWords": "padx=10)",
+                    "bodyAfter": "\n        self.statement_box.bind(\"<Return>\", self.end_typing)\n        self.start = time.time()",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def mingle_reply(self, event):",
+                "docstring": "\"\"\"Enabled Reply Button\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "self.reply_button.config(state=NORMAL, command=self.",
+                    "removedWords": "show_reply)",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def make_statement(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.c.create_rectangle(0, 65, 800, 550, fill=\"#212121\")\n        self.suspicious_player = {\"Name\" : \"Noone\"}\n        \n        if self.suspicion_level == 0:\n            self.c.create_text(40, 70, text=\"You chose to say nothing.\", anchor=NW, fill=\"white\", font=\"Arial 20\")            \n        else:\n            self.authority_points -= self.suspicion_level\n            self.suspicious_player = self.option_box.get()\n            for player in self.players:\n                if player[\"Name\"] == self.suspicious_player:\n",
+                    "prefix": "                    self.suspicious_player = ",
+                    "removedWords": "player",
+                    "bodyAfter": "\n            self.c.create_text(40, 70, text=f\"You chose to suspect {self.suspicious_player['Name']}.\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n        self.c.create_text(40, 120, text=f\"You now have {self.authority_points} authority points.\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n        for widget in self.activity_frame.winfo_children():\n            widget.destroy()\n        self.is_button_pressed = False\n        Button(self.activity_frame, text=\"Next\", font=\"Arial 18 bold\", bg=\"#666666\", fg=\"white\", command=self.proceed).pack(ipadx=10)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def clicked_btn(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "if self.counter == ",
+                    "removedWords": "0:",
+                    "bodyAfter": "\n            self.start_time = time.time()\n            self.counter = 1\n        elif self.counter > 0 and (time.time() - self.start_time <= 5):\n            self.counter += 1\n        else:\n            for widget in self.activity_frame.winfo_children():\n                 widget.destroy()\n            self.c.create_text(40, 200, text=f\"[{self.random_player['Name']}]: Your score was {self.counter}\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n            if self.counter >= 30:\n                self.c.create_text(40, 250, text=f\"You did it!\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n                self.examine_players = True\n            else:\n                self.c.create_text(40, 250, text=f\"Sorry you were not fast enough.\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n                self.c.create_text(40, 300, text=\"You did not earn permission to examine other players\\nthis round.\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n            self.window.update_idletasks() \n            time.sleep(2)\n            Button(self.activity_frame, text=\"Next\", font=\"Arial 18 bold\", bg=\"#666666\", fg=\"white\", command=self.proceed).pack(ipadx=10)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def lights_out_continued(self, is_doctor, is_detective):",
+                "docstring": "\"\"\"Display wake up\"\"\"",
+                "body": {
+                    "bodyBefore": "self.is_doctor, self.is_detective = is_doctor, is_detective\n        self.c.create_rectangle(0, 65, 800, 550, fill=\"#212121\") \n        self.c.create_text(200, 100, text=\"The murderer has done their role\", anchor=NW, fill=\"gray70\", font=\"Arial 20\")\n        self.window.update_idletasks() \n        time.sleep(2)\n        if self.is_doctor == True:\n            self.c.create_text(200, 150, text=\"The doctor has done their role\", anchor=NW, fill=\"gray70\", font=\"Arial 20\")\n        else:\n            self.c.create_text(200, 150, text=\"There is no doctor\", anchor=NW, fill=\"gray70\", font=\"Arial 20\")\n        self.window.update_idletasks() \n        time.sleep(2)\n        if self.is_detective == True:\n            self.c.create_text(200, 200, text=\"The detective has done their role\", anchor=NW, fill=\"gray70\", font=\"Arial 20\")\n        else:\n            self.c.create_text(200, 200, text=\"There is no detective\", anchor=NW, fill=\"gray70\", font=\"Arial 20\")\n        self.window.update_idletasks() \n        time.sleep(2)\n",
+                    "prefix": "        self.c.create_text(40, 300, text=\"[Narrator]: Wake Up!\", anchor=NW, fill=\"white\", font=\"Arial ",
+                    "removedWords": "20\")",
+                    "bodyAfter": "\n        self.is_button_pressed = False\n        Button(self.activity_frame, text=\"Next\", font=\"Arial 18 bold\", bg=\"#666666\", fg=\"white\", command=self.proceed).pack(ipadx=10)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def open_voting_board2(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.voting_menu = Toplevel()\n",
+                    "prefix": "        self.voting_menu.title(\"Vote ",
+                    "removedWords": "Player\")",
+                    "bodyAfter": "\n        self.voting_menu.iconbitmap(\"images/mafia_icon.ico\")\n        self.voting_menu.config(bg=\"#9c9c9c\")\n        \n        self.vote = StringVar()\n        self.vote.set(None)\n        \n        for index, result in enumerate(self.top_players):\n            Radiobutton(self.voting_menu, text=result, font=\"Arial 20 bold\", variable=self.vote, value=result, bg=\"#666666\", fg=\"white\", selectcolor=\"#666666\", relief=RAISED, command=self.enable_confirm_btn2).grid(row=index, column=0, pady=5, padx=100, sticky=W, ipadx=10)\n        \n        self.voting_menu.mainloop()",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def murderer_action(self, players, murder_data):",
+                "docstring": "\"\"\"Function for the murderer\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "self.players, self.murder_data = players, ",
+                    "removedWords": "murder_data",
+                    "bodyAfter": "\n        self.is_button_pressed = False\n        self.player_name_list = []\n        for player in players:\n            self.player_name_list.append(player[\"Name\"])\n        self.option_box = ttk.Combobox(self.activity_frame, width=30, font=\"Arial 20\", values=self.player_name_list)\n        self.option_box.grid(row=0, column=0, padx=10)\n        self.option_box.insert(0, \"Select which player to kill:\")\n        self.option_box.bind(\"<<ComboboxSelected>>\", self.enable_kill_button)\n        self.kill_button = Button(self.activity_frame, text=\"Murder Player\", font=\"Arial 14 bold\", bg=\"#666666\", fg=\"white\", command=self.murder_player, state=DISABLED)\n        self.kill_button.grid(row=0, column=1, ipadx=10)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def show_votes_1(self, voting_board):",
+                "docstring": "\"\"\"Show CPU votings\"\"\"",
+                "body": {
+                    "bodyBefore": "self.is_button_pressed = False\n",
+                    "prefix": "        self.voting_board = ",
+                    "removedWords": "voting_board",
+                    "bodyAfter": "\n        self.c.itemconfig(self.event_status, text=\"Voting\")\n        self.c.create_text(40, 70, text=self.text_converter(\"[Narrator]: Voting Time - please vote for the person who you think is the most guilty.\"), anchor=NW, fill=\"white\", font=\"Arial 20\")\n        \n        for index, result in enumerate(list(voting_board.keys())): #show results\n            self.c.create_text(40, 150+40*index, text=result + \" - \" + str(voting_board[result]), anchor=NW, fill=\"gray70\", font=\"Arial 20\")\n        \n        Button(self.activity_frame, text=\"Open Voting Board\", font=\"Arial 18 bold\", bg=\"#666666\", fg=\"white\", command=self.open_voting_board).grid(row=0, column=0, ipadx=10, padx=10)\n        self.is_button_pressed = False\n        self.next_btn = Button(self.activity_frame, text=\"Confirm Vote\", font=\"Arial 18 bold\", bg=\"#666666\", fg=\"white\", command=self.confirm_vote, state=DISABLED)\n        self.next_btn.grid(row=0, column=1, ipadx=10, padx=10)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def show_CPU_reply(self):",
+                "docstring": "\"\"\"Shows CPU's reply\"\"\"",
+                "body": {
+                    "bodyBefore": "self.reply_button.config(state=DISABLED)       \n        # Clear reply window\n        self.img = PhotoImage(file=\"images/blank_profile.png\")\n        self.chat_image2.config(image=self.img)\n        self.chat_image3.config(image=self.img)\n        self.name_tag2.config(text=\"\\t\")\n        self.name_tag3.config(text=\"\\t\")\n        self.text_box2.config(state=NORMAL)\n        self.text_box2.delete(1.0, END)\n        self.text_box2.config(state=DISABLED)\n        self.text_box3.config(state=NORMAL)\n        self.text_box3.delete(1.0, END)\n        self.text_box3.config(state=DISABLED)\n        \n        # Configure text\n        self.selected_name = self.chat_names.index(self.reply_players.get())\n        self.selected_reply = self.reply_options_data[self.reply_options_text.index(self.reply_options.get())]\n        self.chat_image1.config(image=self.chat_photo[self.selected_name])\n        self.name_tag1.config(text=self.chat_names[self.selected_name])\n        self.text_box1.config(state=NORMAL)\n        self.text_box1.delete(1.0, END)\n        self.text_box1.insert(1.0, self.chat_question[self.selected_name]) \n        self.text_box1.config(state=DISABLED)\n        \n        self.window.update_idletasks() \n        time.sleep(1)\n        self.img2 = PhotoImage(file=\"images/player1_profile.png\")\n        self.chat_image2.config(image=self.img2)\n        self.name_tag2.config(text=self.p1_name)\n        self.text_box2.config(state=NORMAL)\n        self.text_box2.delete(1.0, END)\n        self.text_box2.insert(1.0, self.selected_reply[\"Answer\"]) \n        self.text_box2.config(state=DISABLED)\n        \n        self.window.update_idletasks() \n        time.sleep(2)\n        self.answer_index = self.chat_names.index(self.reply_players.get())\n",
+                    "prefix": "        if self.selected_reply[\"Points\"] == ",
+                    "removedWords": "20:",
+                    "bodyAfter": "\n            self.reply  = \"3\"\n            self.percentage_change = 0.3\n        elif self.selected_reply[\"Points\"] == 10:\n            self.reply  = \"2\"\n            self.percentage_change = 0.5\n        elif self.selected_reply[\"Points\"] == 5:\n            self.reply  = \"1\"\n            self.percentage_change = 0.7\n        if random() < self.percentage_change: #Lost suspicion points\n            self.reply_text = self.discuss_vote[self.answer_index][\"Reply\" + self.reply][\"Good\"]\n            if len(self.players) >= 3:\n                self.reply_text = self.reply_text.replace(\"susp_opponent1\", self.opponents_list[0])\n            if len(self.players) >= 4:\n                self.reply_text = self.reply_text.replace(\"susp_opponent2\", self.opponents_list[1])\n            \n            self.chat_image3.config(image=self.chat_photo[self.selected_name])\n            self.name_tag3.config(text=self.chat_names[self.selected_name])\n            \n            self.text_box3.config(state=NORMAL)\n            self.text_box3.delete(1.0, END)\n            self.text_box3.insert(1.0, self.reply_text) \n            self.text_box3.config(state=DISABLED)\n            \n            self.suspicion_points -= self.selected_reply[\"Points\"]\n            self.update_suspicion_points(self.suspicion_points)\n        else: #Gain suspicion points\n            self.reply_text = self.discuss_vote[self.answer_index][\"Reply\" + self.reply][\"Bad\"]\n            if len(self.players) >= 3:\n                self.reply_text = self.reply_text.replace(\"susp_opponent1\", self.opponents_list[0])\n            if len(self.players) >= 4:\n                self.reply_text = self.reply_text.replace(\"susp_opponent2\", self.opponents_list[1])\n            \n            self.chat_image3.config(image=self.chat_photo[self.selected_name])\n            self.name_tag3.config(text=self.chat_names[self.selected_name])\n            \n            self.text_box3.config(state=NORMAL)\n            self.text_box3.delete(1.0, END)\n            self.text_box3.insert(1.0, self.reply_text) \n            self.text_box3.config(state=DISABLED)\n            \n            self.suspicion_points += self.selected_reply[\"Points\"]\n            self.update_suspicion_points(self.suspicion_points)\n        self.chat_question[self.answer_index] = \"(CONVERSATION COMPLETED)\"\n    \n        self.reply_button.config(state=NORMAL, text=\"Go back\", command = self.prevote_chat_continued)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def update_suspicion_points(self, points):",
+                "docstring": "\"\"\"Updates suspicion points status\"\"\"",
+                "body": {
+                    "bodyBefore": "self.suspicion_points = points\n",
+                    "prefix": "        self.suspicion_status.config(text=f\"Suspicion Points = {self.",
+                    "removedWords": "suspicion_points}\")",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def introduction(self, players):",
+                "docstring": "\"\"\"Introduction to the players\"\"\"",
+                "body": {
+                    "bodyBefore": "self.c.create_text(40, 70, text=\"[Narrator]: Welcome to Mafia. Here are today's contestants:\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n        self.photo_list = []\n        for index in range(0, 6):\n            self.photo_list.append(Image.open(players[index][\"Photo\"]))\n            self.photo_list[index] = self.photo_list[index].resize((137, 180))\n            self.photo_list[index] = ImageTk.PhotoImage(self.photo_list[index])\n            self.c.create_image(index*120+30, 110, anchor=NW, image=self.photo_list[index])\n            self.name = players[index][\"Name\"]\n            for x in range(-(len(players[index][\"Name\"]))+8): # adds space to make name for centered\n                self.name = \" \" + self.name\n            self.c.create_text(index*120+40, 300, text=self.name, anchor=NW, fill=\"white\", font=\"Arial 20\")\n        for index in range(6, 9):\n            self.photo_list.append(Image.open(players[index][\"Photo\"]))\n            self.photo_list[index] = self.photo_list[index].resize((137, 180))\n            self.photo_list[index] = ImageTk.PhotoImage(self.photo_list[index])\n            self.c.create_image(index*150-720, 330, anchor=NW, image=self.photo_list[index])\n            self.name = players[index][\"Name\"]\n            for x in range(-(len(players[index][\"Name\"]))+8): # adds space to make name for centered\n                self.name = \" \" + self.name\n            self.c.create_text(index*150-710, 510, text=self.name, anchor=NW, fill=\"white\", font=\"Arial 20\")\n        self.c.itemconfig(self.event_status, text=\"Introduction\")\n        self.is_button_pressed = False\n",
+                    "prefix": "        Button(self.activity_frame, text=\"Let's Play\", font=\"Arial 18 bold\", bg=\"#666666\", fg=\"white\", command=self.proceed).",
+                    "removedWords": "pack(ipadx=10)",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def detect_player(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.suspicion_level = int(self.option_box.get()[0])\n        for widget in self.activity_frame.winfo_children():\n            widget.destroy()\n        if self.suspicion_level == 0:\n            self.make_statement()\n        else:\n            self.c.create_rectangle(0, 65, 800, 550, fill=\"#212121\") \n            self.c.create_text(40, 70, text=\"Now select the suspicious player\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n            \n            self.player_name_list = []\n            for player in self.players:\n                self.player_name_list.append(player[\"Name\"])\n                \n            self.option_box = ttk.Combobox(self.activity_frame, width=30, font=\"Arial 20\", values=self.player_name_list)\n            self.option_box.grid(row=0, column=0, padx=10)\n            self.option_box.insert(0, \"Select your option:\")\n",
+                    "prefix": "            self.option_box.bind(\"<<ComboboxSelected>>\", self.",
+                    "removedWords": "enable_detective_button)",
+                    "bodyAfter": "\n            self.stat_button = Button(self.activity_frame, text=\"Select\", font=\"Arial 14 bold\", bg=\"#666666\", fg=\"white\", command=self.make_statement, state=DISABLED)\n            self.stat_button.grid(row=0, column=1, ipadx=10)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def revote_4(self, revote_data, top_players):",
+                "docstring": "\"\"\"If Player 1 and at least 1 CPU is voted out\"\"\"",
+                "body": {
+                    "bodyBefore": "self.is_button_pressed = False\n",
+                    "prefix": "        self.top_CPU_players = top_players.",
+                    "removedWords": "copy()",
+                    "bodyAfter": "\n        self.top_CPU_players.remove(self.p1_name)\n        self.c.create_rectangle(0, 65, 800, 550, fill=\"#212121\")\n        for widget in self.activity_frame.winfo_children():\n            widget.destroy()\n        self.c.create_text(40, 70, text=\"[Narrator]: Multiple people have the highest vote.\\nPlayers will have to choose who to vote out.\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n        for index, player in enumerate(self.top_CPU_players):\n            self.c.create_text(40, 170 + 80*index, text=self.text_converter(f\"[{player}]: {choice(revote_data)}\"), anchor=NW, fill=\"gray70\", font=\"Arial 20\")\n        self.all_statements = list.copy(revote_data)\n        shuffle(self.all_statements)\n        self.statement_options = []\n        for index in range(0, 3):\n            self.statement_options.append(self.all_statements.pop())\n        self.statement_box = ttk.Combobox(self.activity_frame, value=self.statement_options, font=\"Arial 18\", width=30)\n        self.statement_box.grid(row=0, column=0, ipadx=10, padx=10)\n        self.statement_box.delete(0, END)\n        self.statement_box.insert(0, \"Select Statement\")\n        self.statement_box.bind(\"<<ComboboxSelected>>\", self.enable_statement_btn)\n        self.statement_btn = Button(self.activity_frame, text=\"Confirm\", font=\"Arial 18 bold\", bg=\"#666666\", fg=\"white\", command=self.proceed, state=DISABLED)\n        self.statement_btn.grid(row=0, column=1, ipadx=10, padx=10)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def lights_out(self):",
+                "docstring": "\"\"\"Display lights out\"\"\"",
+                "body": {
+                    "bodyBefore": "self.c.itemconfig(self.event_status, text=\"Lights out\")\n",
+                    "prefix": "        self.c.create_text(40, 70, text=f\"[Narrator]: Round {self.round_no} \u2013 Lights out.\", anchor=NW, fill=\"white\", font=\"Arial ",
+                    "removedWords": "20\")",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def trivia_question(self, players, df, examine_players):",
+                "docstring": "\"\"\"Guess the answer to the question\"\"\"",
+                "body": {
+                    "bodyBefore": "self.is_button_pressed = False\n        self.c.create_rectangle(0, 65, 800, 550, fill=\"#212121\")\n        self.c.itemconfig(self.event_status, text=\"Free Time - Challenge\")\n        self.players, self.df, self.examine_players = players, df, examine_players\n        \n        self.q_no = randint(0, 253) #question number\n",
+                    "prefix": "        self.q_options = ",
+                    "removedWords": "[]",
+                    "bodyAfter": "\n        for x in range(1, 5):\n            self.q_options.append(self.df.iloc[self.q_no][\"Option \" + chr(ord('@')+x)])\n        shuffle(self.q_options)\n        self.q_info = {\"Question\" : self.df.iloc[self.q_no][\"Question\"], \"A\" : self.q_options[0], \"B\" : self.q_options[1],\n                  \"C\" : self.q_options[2], \"D\" : self.q_options[3], \"Answer\" : self.df.iloc[self.q_no][\"Answer\"]}\n        self.random_player = choice(self.players)\n        \n        self.c.create_text(40, 70, text=f\"[{self.random_player['Name']}]: Triva Round!\\n\\n\" + self.text_converter(self.q_info['Question']), anchor=NW, fill=\"white\", font=\"Arial 20\")\n        self.window.update_idletasks() \n        time.sleep(1)        \n        for x in range(1, 5):\n            self.c.create_text(40, 180+50*x, text=f\"{chr(ord('@')+x)} - {self.q_info[chr(ord('@')+x)]}\", anchor=NW, fill=\"gray70\", font=\"Arial 20\")\n            self.window.update_idletasks() \n            time.sleep(0.75)\n         \n        self.statement_box = ttk.Combobox(self.activity_frame, value=self.q_options, font=\"Arial 18\", width=30)\n        self.statement_box.grid(row=0, column=0, ipadx=10, padx=10)\n        self.statement_box.delete(0, END)\n        self.statement_box.insert(0, \"Choose Answer\")\n        self.statement_box.bind(\"<<ComboboxSelected>>\", self.enable_statement_btn)\n        self.statement_btn = Button(self.activity_frame, text=\"Confirm\", font=\"Arial 18 bold\", bg=\"#666666\", fg=\"white\", command=self.reveal_correct_answer, state=DISABLED)\n        self.statement_btn.grid(row=0, column=1, ipadx=10, padx=10)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def enable_confirm_btn(self):",
+                "docstring": null,
+                "body": "self.voting_menu.destroy()\n        self.next_btn.configure(state=NORMAL)"
+            },
+            {
+                "header": "def reveal_correct_answer(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.c.create_rectangle(0, 65, 800, 550, fill=\"#212121\")\n        self.c.create_text(40, 70, text=f\"[{self.random_player['Name']}]: That is...\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n        self.window.update_idletasks() \n        time.sleep(randint(1,3)) \n",
+                    "prefix": "        if self.statement_box.get() == self.",
+                    "removedWords": "q_info[\"Answer\"]:",
+                    "bodyAfter": "\n            self.c.create_text(40, 120, text=f\"[{self.random_player['Name']}]: That is the Correct Answer!\", anchor=NW, fill=\"white\", font=\"Arial 20\")\n            self.examine_players = True\n        else:\n            self.c.create_text(40, 120, text=self.text_converter(f\"[{self.random_player['Name']}]: I'm sorry, but the correct answer is {self.q_info['Answer']}\") + \"\\n\\n\" + self.text_converter(\"You did not earn permission to examine other players this round.\"), anchor=NW, fill=\"white\", font=\"Arial 20\")\n        \n        for widget in self.activity_frame.winfo_children():\n            widget.destroy()\n        Button(self.activity_frame, text=\"Next\", font=\"Arial 18 bold\", bg=\"#666666\", fg=\"white\", command=self.proceed).pack(ipadx=10)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def open_voting_board(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.voting_menu = Toplevel()\n        self.voting_menu.title(\"Vote Player\")\n        self.voting_menu.iconbitmap(\"images/mafia_icon.ico\")\n        self.voting_menu.config(bg=\"#9c9c9c\")\n        \n",
+                    "prefix": "        self.vote = ",
+                    "removedWords": "StringVar()",
+                    "bodyAfter": "\n        self.vote.set(None)\n        \n        for index, result in enumerate(list(self.voting_board.keys())):\n            Radiobutton(self.voting_menu, text=result, font=\"Arial 20 bold\", variable=self.vote, value=result, bg=\"#666666\", fg=\"white\", selectcolor=\"#666666\", relief=RAISED, command=self.enable_confirm_btn).grid(row=index, column=0, pady=5, padx=100, sticky=W, ipadx=10)\n        \n        self.voting_menu.mainloop()",
+                    "numWordsRemoved": 1
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\Mafia\\Mafia Python.py",
+        "contents": [
+            {
+                "header": "def wait_for_response():",
+                "docstring": "\"\"\"Function for stopping program until user meets required conditions\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "global ",
+                    "removedWords": "is_button_pressed",
+                    "bodyAfter": "\n    while User_GUI.is_button_pressed == False: # Updates every 0.1 seconds\n        root.update()\n        time.sleep(0.1)\n    is_button_pressed = False",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def main():",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "global User_GUI, murderer, doctor, detective, p1_name\n    players, chat_list, convo_topics, introductions, round_no = [], [], [0, 1, 2, 3, 4], [], 1\n    suspicion_points, authority_points, discuss_topics, discuss_vote = 0, 4, [0, 1, 2], []\n    is_button_pressed = False\n    \n    #Importing data\n    with open(\"data\\character_data.json\", \"r\") as f:\n        character_data = json.load(f)\n    shuffle(character_data)\n    \n    with open(\"data\\mingle_data.json\", \"r\") as f:\n        script_data = json.load(f)\n        mingle_data = script_data[0]\n        prevote_data = script_data[1]\n        murder_data = script_data[2]\n        revote_data = script_data[3]\n        sample_text = script_data[4]\n        interrogation = script_data[5]\n    \n    df = pd.read_csv(r\"data\\250 General Knowledge Questions.csv\") \n    \n    #Generating 9 CPU players\n    for _ in range(0,9):\n        players.append(character_data.pop(0))\n        \n    p1_name = enter_name.get().title().strip()\n    if p1_name == \"\":\n        p1_name = \"Player 1\"\n    shuffle(players)\n    \n    User_GUI = Mafia(root)\n    User_GUI.introduction(players)\n    wait_for_response()\n    \n    chat_num = randint(2,3) #How many people want to talk to you\n    chat_player_list = players.copy()\n    shuffle(chat_player_list)\n    for _ in range(0, chat_num):\n        chat_list.append([chat_player_list.pop(0)])\n    for index, player, in enumerate(chat_list):\n        convo_topic = choice(convo_topics)\n        convo_topics.remove(convo_topic)\n        chat_list[index].append(choice(mingle_data[convo_topic][0]))\n        chat_list[index][1] = chat_list[index][1].replace(\"player_name\", p1_name)\n        chat_list[index][1] = chat_list[index][1].replace(\"opponent_name\", chat_player_list[-1][\"Name\"])\n        for x in range(1,5):\n            chat_list[index].append(mingle_data[convo_topic][x])\n        introductions.append(chat_list[index][1])\n        \n    User_GUI.mingle(introductions, chat_list, chat_num, chat_player_list, p1_name)\n    wait_for_response()\n    # assignning roles\n    determiner = randint(1,5)\n    if determiner == 1:\n        murderer = p1_name\n        doctor = players[0]\n        detective = players[1]\n        innocent = players[2:]\n        User_GUI.assign_roles(\"You got assigned as the murderer - Your job is to kill the other players at night without being caught.\", \"Murderer\")\n    elif determiner == 2:\n        doctor = p1_name\n        murderer = players[0]\n        detective = players[1]\n        innocent = players[2:]\n        User_GUI.assign_roles(\"You got assigned as the doctor - Your job is to heal players that are about to be killed.\", \"Doctor\")\n    elif determiner == 3:\n        detective = p1_name\n        murderer = players[0]\n        doctor = players[1]\n        innocent = players[2:]\n        User_GUI.assign_roles(\"You got assigned as the detective - Your job is to find out who the murderer is and arrest them.\", \"Detective\")\n    else:  \n        murderer = players[0]\n        doctor = players[1]\n        detective = players[2]\n        innocent = players[3:]\n        User_GUI.assign_roles(\"You got assigned as an innocent - Your job is to survive and vote out who the murderer.\", \"Innocent\")\n    wait_for_response()\n    \n    while True:\n        with open(r\"data\\mingle_data.json\", \"r\") as f:\n            script_data = json.load(f)\n            mingle_data = script_data[0]\n            prevote_data = script_data[1]\n            murder_data = script_data[2]\n            revote_data = script_data[3]\n            sample_text = script_data[4]    \n            interrogation = script_data[5]\n        User_GUI.lights_out()\n        \n        if murderer == p1_name: #if player1 is the murderer:\n            User_GUI.murderer_action(players, murder_data)\n            wait_for_response()\n            murdered_player = User_GUI.murdered_player\n            if len(players) == 1:\n                win_game()\n                break\n        else: #if player 1 is not the murderer\n            if round_no <= 2:\n                percentage_chance = 0\n            else: #applicable on round 3 and after\n                percentage_chance = (1 / len(players)) + (suspicion_points/100)\n                if percentage_chance > 0.95:\n                    percentage_change = 0.95\n                elif percentage_chance < 0.05:\n                    percentage_change = 0.05\n            if random() < percentage_chance:\n                User_GUI.murder_player1(murderer[\"Name\"], murder_data)\n                end_game()\n                break\n            else:\n                murder_list = list.copy(players)\n                murder_list.remove(murderer)\n                shuffle(murder_list)\n                murdered_player = murder_list.pop(0)\n        \n        is_doctor = True\n        if doctor == p1_name: #if player1 is the doctor:\n            User_GUI.doctor_action(players)\n            wait_for_response()\n            if User_GUI.option[-9:-1] == \"yourself\":\n                saved_player = p1_name\n            else:\n                for player in players:\n                    if player[\"Name\"] == User_GUI.option:\n                        saved_player = player\n        elif doctor in players: #if player1 is not the doctor\n            percentage_chance = (1 / (len(players) + 1)) + (-1*suspicion_points/100)\n            if percentage_chance > 0.95:\n                percentage_change = 0.95\n            elif percentage_chance < 0.05:\n                percentage_change = 0.05\n            if random() < percentage_chance: #chance of being saved\n                saved_player = {\"Name\" : p1_name}\n            else:\n                saved_player = choice(players)\n        else: #if the doctor has been murdered\n            saved_player = {\"Name\" : \"Noone\"}\n            is_doctor = False\n            \n        is_detective = True\n        if detective == p1_name: #if player1 is the detective:\n            User_GUI.detective_action(players, authority_points)\n            wait_for_response()\n            suspicious_player = User_GUI.suspicious_player\n            authority_points = User_GUI.authority_points\n            suspicion_level = User_GUI.suspicion_level\n            \n        elif detective in players: #if player1 is not the detective\n            suspicion_level = 0\n            suspicion_determinter = 0.2*round_no\n            if suspicion_determinter > 0.9:\n                suspicion_determinter = 0.9\n            if random() < suspicion_determinter: #if true, then the detective will make a statement\n                if random() < 0.33:\n                    suspicion_level = 2\n                else:\n                    suspicion_level = 1\n            percentage_chance = (1 / (len(players) + 1)) + (suspicion_points/100)\n            if percentage_chance > 0.95:\n                percentage_change = 0.95\n            elif percentage_chance < 0.05:\n                percentage_change = 0.05\n            if random() < percentage_chance: #chance of being selected as suspicious\n                suspicious_player = {\"Name\" : p1_name}\n            else:\n                suspicious_players = list.copy(players)\n                suspicious_players.remove(detective)\n                suspicious_player = choice(suspicious_players)\n                \n        else: # if the detective has been killed\n            suspicion_level, suspicious_player = 0, {\"Name\" : \"Noone\"}\n            is_detective = False\n            \n        User_GUI.lights_out_continued(is_doctor, is_detective)\n        wait_for_response()\n        User_GUI.show_events(murdered_player, doctor, detective, saved_player, \n                             suspicion_level, suspicious_player, players)\n        wait_for_response()\n        players = User_GUI.players\n        if len(players) < 2:\n            User_GUI.show_votes_2(\"The are not enough people for a voting round.\", \"\")\n            wait_for_response()\n            if murderer == p1_name:\n                win_game()\n            else:\n                end_game()\n            break\n        if len(players) >= 4:\n            User_GUI.prevote_chat(players, suspicion_points, prevote_data, discuss_topics, round_no)\n        wait_for_response()\n        suspicion_points = User_GUI.suspicion_points\n        \n",
+                    "prefix": "        # ",
+                    "removedWords": "Voting",
+                    "bodyAfter": "\n        if murderer == p1_name:\n            murderer = {\"Name\" : p1_name}\n        voting_board, top_players = {}, {}\n        for player in players:\n            voting_board[player[\"Name\"]] = 0\n        voting_board[p1_name] = 0\n        percentage_chance1 = (round_no*0.1) + (suspicion_points/100) #chance of someone voting you\n        percentage_chance2 = (suspicion_level/100)*3 #chance of someone voting the suspicious player\n        if suspicious_player[\"Name\"] == p1_name:\n            percentage_chance1 = percentage_chance2\n        elif percentage_chance1 < 0.05:\n            percentage_chance1 = 0.05\n        elif percentage_chance1 > 0.95:\n            percentage_chance1 = 0.95\n        for player in players:\n            if random() < percentage_chance1: #then vote for player 1\n                voting_board[p1_name] += 1\n            else:\n                if random() < percentage_chance2: #then vote for the suspicious player\n                    voting_board[suspicious_player[\"Name\"]] += 1\n                else:\n                    determiner = randint(0, len(list(voting_board.keys()))-2)\n                    voting_board[list(voting_board.keys())[determiner]] += 1\n        \n        voting_board = {k: v for k, v in sorted(voting_board.items(), reverse=True, key=lambda item: item[1])}\n        User_GUI.show_votes_1(voting_board)\n        wait_for_response()\n        top_players = User_GUI.top_players\n        # Revotes\n        if len(top_players) == 1 and p1_name not in top_players: #if only 1 CPU is voted out\n            User_GUI.revote_1(top_players, revote_data)\n            wait_for_response()\n            fate = User_GUI.vote.get()\n            determiner = choice([1, 2, 3])\n            if determiner == 1 or (determiner == 3 and fate == 1): #the player goes out\n                for player in players:\n                    if player[\"Name\"] == top_players[0]:\n                        players.remove(player)\n                        User_GUI.update_players(players)\n                if murderer[\"Name\"] == top_players[0]:\n                    User_GUI.show_votes_2(f\"[Narrator]: The majority of the players have voted {top_players[0]} out.\", f\"You have successfully voted out the murderer!\")\n                    win_game()\n                    break\n                else:\n                    User_GUI.show_votes_2(f\"[Narrator]: The majority of the players have voted {top_players[0]} out.\", f\"{top_players[0]} was not the murderer.\")\n            elif determiner == 2 or (determiner == 3 and fate == 2): #the player stays\n                User_GUI.show_votes_2(f\"[Narrator]: The majority of the players have chosen to not vote {top_players[0]} out.\", \"\")   \n        \n        elif len(top_players) > 1 and p1_name not in top_players: #if multiple CPU are voted out\n            User_GUI.revote_2(top_players, revote_data)\n            wait_for_response()\n            fate = User_GUI.vote.get()\n            if random() < 0.6: #random choice\n                shuffle(top_players)\n                voted_out = top_players.pop(0)\n                for player in players: #removes player from list\n                    if player[\"Name\"] == voted_out:\n                        players.remove(player)\n                        User_GUI.update_players(players)\n                if murderer[\"Name\"] == voted_out:\n                    User_GUI.show_votes_2(\"[Narrator]: The majority of the players have voted \" + voted_out + \" out.\", \"\")\n                    win_game()\n                    break\n                else:\n                    User_GUI.show_votes_2(\"[Narrator]: The majority of the players have voted \" + voted_out + \" out.\", voted_out + \" was not the murderer.\")\n            else:\n                if (((len(players)+1)-len(top_players)) % len(top_players) == 0) and random() < 0.1:\n                    User_GUI.show_votes_2(\"[Narrator]: The votes were a tie, so no players will be voted out this round.\", \"\")\n                else:\n                    voted_out = fate\n                    for player in players: #removes player from list\n                        if player[\"Name\"] == voted_out:\n                            players.remove(player)\n                            User_GUI.update_players(players)\n                    if murderer[\"Name\"] == voted_out:\n                        User_GUI.show_votes_2(\"[Narrator]: The majority of the players have voted \" + voted_out + \" out.\", \"\")\n                        win_game()\n                        break\n                    else:\n                        User_GUI.show_votes_2(\"[Narrator]: The majority of the players have voted \" + voted_out + \" out.\", voted_out + \" was not the murderer.\")\n        elif len(top_players) == 1 and p1_name in top_players: #if player 1 is voted out\n            User_GUI.revote_3(revote_data)\n            wait_for_response()\n            percentage_chance = (round_no*0.1) + (suspicion_points/100)\n            if random() < percentage_chance:\n                User_GUI.show_votes_2(\"The players are deciding your fate.\", \"[Narrator]: The majority of the players have voted \" + p1_name + \" out.\")\n                wait_for_response()\n                end_game()\n                break\n            else:\n                User_GUI.show_votes_2(\"The players are deciding your fate.\", \"The majority of the players have chosen to not vote \" + p1_name + \" out.\")\n        \n        elif len(top_players) > 1 and p1_name in top_players: #if player 1 is voted out and at least 1 CPU\n            User_GUI.revote_4(revote_data, top_players)\n            wait_for_response()\n            percentage_chance = (round_no*0.1) + (suspicion_points/100)\n            if random() < percentage_chance:\n                User_GUI.show_votes_2(\"The players are deciding your fate.\", \"[Narrator]: The majority of the players have voted \" + p1_name + \" out.\")\n                wait_for_response()\n                end_game()\n                break\n            else:\n                if (((len(players)+1)-len(top_players)) % len(top_players) == 0) and random() < 0.1:\n                    User_GUI.show_votes_2(\"[Narrator]: The votes were a tie, so no players will be voted out this round.\", \"\")\n                else:\n                    top_players.remove(p1_name)                  \n                    voted_out = choice(top_players)\n                    \n                    for player in players: #removes player from list\n                        if player[\"Name\"] == voted_out:\n                            players.remove(player)\n                            User_GUI.update_players(players)\n                    \n                    if murderer[\"Name\"] == voted_out:\n                        User_GUI.show_votes_2(\"[Narrator]: The majority of the players have voted \" + voted_out + \" out.\", \"You have successfully voted out the murderer!\")\n                        wait_for_response()\n                        win_game()\n                        break\n                    else:\n                        User_GUI.show_votes_2(\"[Narrator]: The majority of the players have voted \" + voted_out + \" out.\", voted_out + \" was not the murderer.\")           \n        wait_for_response()\n        User_GUI.free_time()\n        wait_for_response()\n        \n        if murderer[\"Name\"] == p1_name:\n            murderer = p1_name\n        \n        determiner = randint(1,2) #Free time - Chat (Gain or lose points)\n        if determiner == 1: #Suspicion check\n            User_GUI.guess_the_name(players, suspicion_points)\n        else: # Guess the fact\n            User_GUI.guess_the_fact(players, suspicion_points, character_data)\n        \n        wait_for_response()\n        suspicion_points = User_GUI.suspicion_points\n        \n        determiner = randint(1,40) #Free time - Challenge\n        examine_players = False\n        \n        if 1 <= determiner <= 12: #30% chance of trivia question\n            User_GUI.trivia_question(players, df, examine_players)\n        elif 13 <= determiner <= 20: #20% chance of guessing shirt colours\n            User_GUI.guess_the_shirt(players, character_data, examine_players)\n        elif 21 <= determiner <= 25: #12.5% chance of rapid button presses\n            User_GUI.speed_clicker(players, examine_players)\n        elif 26 <= determiner <= 30: #12.5% chance of speed typing\n            User_GUI.speed_typer(players, sample_text, examine_players)\n        elif 31 <= determiner <= 35: #12.5% chance of time estimation\n            User_GUI.time_estimation(players, examine_players)\n        elif 36 <= determiner <= 40: #12.5% chance of reaction speed test\n            User_GUI.reaction_test(players, examine_players)\n            \n        wait_for_response()\n        examine_players = User_GUI.examine_players\n        \n        if examine_players == True:\n            User_GUI.interrogation_role(players, interrogation, murderer, doctor, detective)\n            \n        wait_for_response()\n            #Reduce suspicion points\n        if suspicion_points < 10:\n            suspicion_points += 5\n        elif suspicion_points > 10:\n            suspicion_points -= 5           \n        User_GUI.update_suspicion_points(suspicion_points)\n        \n        round_no += 1\n        User_GUI.update_round_number(round_no)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def win_game():",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "global User_GUI, murderer, doctor, detective, ",
+                    "removedWords": "p1_name",
+                    "bodyAfter": "\n    User_GUI.end_game(\"[Narrator]: Congratulations, you win!\", murderer, doctor, detective, p1_name)",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def show_rules():",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "rules_window = Toplevel()\n",
+                    "prefix": "    rules_window.title(\"Mafia ",
+                    "removedWords": "Rules\")",
+                    "bodyAfter": "\n    rules_window.geometry(\"723x750+10+10\")\n    rules_window.config(bg=\"black\")\n    rules_window.iconbitmap(\"images/mafia_icon.ico\")\n    rules = PhotoImage(file=\"images/mafia_rules.png\")\n    Label(rules_window, bg=\"black\", image=rules).pack()\n    rules_window.mainloop()",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def start_game():",
+                "docstring": "\"\"\"Run main code\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "global ",
+                    "removedWords": "root",
+                    "bodyAfter": "\n    root = Toplevel()\n    root.geometry(\"1325x700+10+10\")\n    root.title(\"Mafia in Python\")\n    root.iconbitmap(\"images/mafia_icon.ico\")\n    root.config(bg=\"#9c9c9c\")\n    \n    threading.Thread(target=main).start()\n    \n    root.protocol(\"WM_DELETE_WINDOW\", on_closing)\n    root.mainloop()",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def end_game():",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "global User_GUI, murderer, doctor, detective, p1_name\n",
+                    "prefix": "    User_GUI.end_game(\"[Narrator]: Sorry you lost the game.\", murderer, doctor, detective, ",
+                    "removedWords": "p1_name)",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def on_closing():",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "if messagebox.askokcancel(\"Quit\", \"Are you sure you want to quit? The game is still in progress.\"",
+                    "removedWords": "):",
+                    "bodyAfter": "\n        root.destroy()",
+                    "numWordsRemoved": 1
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\Mafia\\python files\\Mafia Text-User-Interface.py",
+        "contents": [
+            {
+                "header": "def win_game():",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "print(\"\\nCongratulations, you ",
+                    "removedWords": "win!\\n\")",
+                    "bodyAfter": "\n    print(f\"The murderer was {murderer['Name']}\\nThe doctor was {doctor['Name']}\\\n          \\nThe detective was {detective['Name']}\")",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def end_game():",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "print(\"\\nSorry you lost the game.",
+                    "removedWords": "\\n\")",
+                    "bodyAfter": "\n    print(f\"The murderer was {murderer['Name']}\\nThe doctor was {doctor['Name']}\\\n          \\nThe detective was {detective['Name']}\")",
+                    "numWordsRemoved": 1
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\Mafia\\python files\\Sleep and Update.py",
+        "contents": [
+            {
+                "header": "def wait_for_response():",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "global is_button_pressed\n",
+                    "prefix": "    while is_button_pressed == ",
+                    "removedWords": "False:",
+                    "bodyAfter": "\n        root.update()\n        time.sleep(0.1)\n    is_button_pressed = False",
+                    "numWordsRemoved": 1
+                }
+            },
+            {
+                "header": "def function():",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "global is_button_pressed\n",
+                    "prefix": "    is_button_pressed = ",
+                    "removedWords": "True",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 1
+                }
+            }
+        ]
+    }
+]

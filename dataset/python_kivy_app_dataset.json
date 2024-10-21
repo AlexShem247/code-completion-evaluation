@@ -1,0 +1,482 @@
+[
+    {
+        "file": "C:\\Programming\\Python\\Games\\MiG Mania\\Saves\\main19.py",
+        "contents": [
+            {
+                "header": "def on_keyboard_down(self, keyboard, keycode, text, modifiers):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "if keycode[1] not",
+                    "removedWords": " in self.keys:",
+                    "bodyAfter": "\n            self.keys.append(keycode[1])",
+                    "numWordsRemoved": 3
+                }
+            },
+            {
+                "header": "def enemyAnimation(self, dt):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "for enemy in self.shotEnemies:\n            enemy.pos_hint[\"center_y\"] += (-0.5 - enemy.pos_hint[\"center_y\"]) * dt * 0.5\n",
+                    "prefix": "          ",
+                    "removedWords": "  if enemy.pos_hint[\"center_y\"] < -0.25:",
+                    "bodyAfter": "\n                self.shotEnemies.remove(enemy)",
+                    "numWordsRemoved": 7
+                }
+            },
+            {
+                "header": "def updateMenu(self, dt):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "# Move plane\n",
+                    "prefix": "        if self.ANIMATION_MIN_X <= ",
+                    "removedWords": "self.animationX + self.moveX <= self.ANIMATION_MAX_X:",
+                    "bodyAfter": "\n            self.animationX += self.moveX * dt\n        else:\n            if self.animationX < self.ANIMATION_MIN_X:\n                self.animationX = self.ANIMATION_MIN_X\n            elif self.animationX > self.ANIMATION_MAX_X:\n                self.animationX = self.ANIMATION_MAX_X",
+                    "numWordsRemoved": 8
+                }
+            },
+            {
+                "header": "def restartGame(self, *args):",
+                "docstring": null,
+                "body": "self.resultsTheme.stop()\n        self.winTheme.stop()\n        self.resetValues()\n        self.playGame()"
+            },
+            {
+                "header": "def itemCollected(self, itemName, action):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "# Find item spawn rate\n        itemGood = True\n        itemInfo = [e[\"item\"] for e in self.ITEM_CHOICES]\n        for itemType in itemInfo:\n            for item in itemType:\n                if item == itemName:\n",
+                    "prefix": "                    if action",
+                    "removedWords": " == \"collided\":",
+                    "bodyAfter": "\n                        itemGood = itemType[item] >= 0.2\n                    elif action == \"shot\":\n                        itemGood = itemType[item] < 0.2\n                    break\n        # Show appropriate action depending on item collected\n        if itemGood:\n            self.totalScore += 50*(1 + self.increaseRate)\n            self.ids.planeSprite.source = \"images/behindGood.png\"\n            self.itemMultiplier = -1\n        else:\n            self.totalScore -= 50 * (1 + self.increaseRate)\n            self.ids.planeSprite.source = \"images/behindBad.png\"\n            self.itemMultiplier = 1",
+                    "numWordsRemoved": 3
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\MiG Mania\\Saves\\main10.py",
+        "contents": [
+            {
+                "header": "def preFlyAnimation(self, dt):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.timeCounter += dt\n        # Spin propeller\n",
+                    "prefix": "        if 250",
+                    "removedWords": " < self.propellerAngle < 260:",
+                    "bodyAfter": "\n            # Play propeller sound\n            self.propellerStartUp.play()",
+                    "numWordsRemoved": 5
+                }
+            },
+            {
+                "header": "def updateMenu(self, dt):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "# Move plane\n        if self.ANIMATION_MIN_X <= self.animationX + self.moveX <= self.ANIMATION_MAX_X:\n            self.animationX += self.moveX\n        else:\n",
+                    "prefix": "            self.moveX = choice([-1, 1]) * ",
+                    "removedWords": "randint(200, 1000) / 1000000",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 4
+                }
+            },
+            {
+                "header": "def mainGame(self, dt):",
+                "docstring": null,
+                "body": "self.shootCounter -= dt"
+            },
+            {
+                "header": "def on_touch_down(self, touch):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "if self.playingGame:\n",
+                    "prefix": "           ",
+                    "removedWords": " if touch.spos[0] > 0.6:",
+                    "bodyAfter": "\n                self.keys.append(\"spacebar\")\n            elif touch.spos[0] < 0.4:\n                self.keys.append(\"arrows\")\n        return super(Main, self).on_touch_down(touch)",
+                    "numWordsRemoved": 6
+                }
+            },
+            {
+                "header": "def howToPlay(self):",
+                "docstring": null,
+                "body": "pass"
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\MiG Mania\\Saves\\main7.py",
+        "contents": [
+            {
+                "header": "def updateMenu(self, dt):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "# Move plane\n",
+                    "prefix": "        if self.ANIMATION_MIN_X <= self.animationX ",
+                    "removedWords": "+ self.moveX <= self.ANIMATION_MAX_X:",
+                    "bodyAfter": "\n            self.animationX += self.moveX\n        else:\n            self.moveX = choice([-1, 1]) * randint(200, 1000) / 1000000",
+                    "numWordsRemoved": 6
+                }
+            },
+            {
+                "header": "def __init__(self, **kwargs):",
+                "docstring": null,
+                "body": "super(Main, self).__init__(**kwargs)\n        self.init_sound()\n        self.mainTheme.play()\n        Clock.schedule_interval(self.updateMenu, 1/self.FPS)"
+            },
+            {
+                "header": "def keyboard_closed(self):",
+                "docstring": null,
+                "body": "self.keyboard.unbind(on_key_down=self.on_keyboard_down)\n        self.keyboard.unbind(on_key_dup=self.on_keyboard_up)\n        self.keyboard = None"
+            },
+            {
+                "header": "def howToPlay(self):",
+                "docstring": null,
+                "body": "pass"
+            },
+            {
+                "header": "def playGame(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "# Make widgets invisible\n        self.frameCounter = 0\n",
+                    "prefix": "   ",
+                    "removedWords": "     for child in self.children:",
+                    "bodyAfter": "\n            child.color = (0, 0, 0, 0)\n            child.background_color = (0, 0, 0, 0)",
+                    "numWordsRemoved": 7
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\MiG Mania\\Saves\\main5.py",
+        "contents": [
+            {
+                "header": "def build(self):",
+                "docstring": null,
+                "body": "return Main()"
+            },
+            {
+                "header": "def playGame(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "# Make widgets invisible\n",
+                    "prefix": "        for child ",
+                    "removedWords": "in self.children:",
+                    "bodyAfter": "\n            child.color = (0, 0, 0, 0)\n            child.background_color = (0, 0, 0, 0)",
+                    "numWordsRemoved": 3
+                }
+            },
+            {
+                "header": "def preFlyAnimation(self, dt):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.timeCounter += dt\n        # Spin propeller\n",
+                    "prefix": "        if 250 ",
+                    "removedWords": "< self.propellerAngle < 260:",
+                    "bodyAfter": "\n            # Play propeller sound\n            self.propellerStartUp.play()",
+                    "numWordsRemoved": 5
+                }
+            },
+            {
+                "header": "def howToPlay(self):",
+                "docstring": null,
+                "body": "pass"
+            },
+            {
+                "header": "def updateMenu(self, dt):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "# Move plane\n        if self.ANIMATION_MIN_X <= self.animationX + self.moveX <= self.ANIMATION_MAX_X:\n            self.animationX += self.moveX\n        else:\n",
+                    "prefix": "            self.moveX = choice([-1, 1])",
+                    "removedWords": " * randint(200, 1000) / 1000000",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 5
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\MiG Mania\\main.py",
+        "contents": [
+            {
+                "header": "def howToPlay(self):",
+                "docstring": null,
+                "body": "self.howToPlayMenu = True\n        self.homeBtnDisabled = True\n        self.moveToFront(self.ids.howToBG)"
+            },
+            {
+                "header": "def init_sound(self):",
+                "docstring": null,
+                "body": "self.mainTheme = SoundLoader.load(\"audio/mainTheme.ogg\")\n        self.propellerStartUp = SoundLoader.load(\"audio/propellerStartUp.ogg\")\n        self.propellerStartUp.volume = 0.1\n        self.propellerFlying = SoundLoader.load(\"audio/propellerFlying.ogg\")\n        self.propellerFlying.volume = 0.1\n        self.startSound = SoundLoader.load(\"audio/start.ogg\")\n        self.shootSound = SoundLoader.load(\"audio/shoot.ogg\")\n        self.crashSound = SoundLoader.load(\"audio/crash.ogg\")\n        self.resultsTheme = SoundLoader.load(\"audio/results.ogg\")\n        self.resultsTheme.volume = 0.2\n        self.winTheme = SoundLoader.load(\"audio/winTheme.ogg\")\n        self.enemyShot = SoundLoader.load(\"audio/enemyShot.ogg\")\n        self.planeFall = SoundLoader.load(\"audio/planeFall.ogg\")\n        self.planeFall.volume = 0.3\n        self.bulletHit = SoundLoader.load(\"audio/bulletHit.ogg\")"
+            },
+            {
+                "header": "def preFlyAnimation(self, dt):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.timeCounter += dt\n        # Spin propeller\n",
+                    "prefix": "        if",
+                    "removedWords": " 550 < self.propellerAngle < 600:",
+                    "bodyAfter": "\n            # Play propeller sound\n            self.propellerStartUp.play()",
+                    "numWordsRemoved": 6
+                }
+            },
+            {
+                "header": "def build(self):",
+                "docstring": null,
+                "body": "return Main()"
+            },
+            {
+                "header": "def unPauseGame(self, *args):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.canvas.remove(self.grayOut)\n",
+                    "prefix": "   ",
+                    "removedWords": "     for widget in [self.pauseLabel, self.resumeBtn, self.quitBtn]:",
+                    "bodyAfter": "\n            self.remove_widget(widget)",
+                    "numWordsRemoved": 7
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\MiG Mania\\Saves\\main9.py",
+        "contents": [
+            {
+                "header": "def howToPlay(self):",
+                "docstring": null,
+                "body": "pass"
+            },
+            {
+                "header": "def playGame(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.homeBtnDisabled = True\n        self.currentEvent.cancel()\n",
+                    "prefix": "    ",
+                    "removedWords": "    # Make widgets invisible",
+                    "bodyAfter": "\n        self.frameCounter = 0\n        for child in self.children:\n            child.color = (0, 0, 0, 0)\n            child.background_color = (0, 0, 0, 0)",
+                    "numWordsRemoved": 6
+                }
+            },
+            {
+                "header": "def pauseGame(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.inGameBtnDisabled = True\n",
+                    "prefix": "        self.ids.",
+                    "removedWords": "pauseBtn.background_color = (0, 0, 0, 0)",
+                    "bodyAfter": "\n        self.currentEvent.cancel()",
+                    "numWordsRemoved": 4
+                }
+            },
+            {
+                "header": "def keyboard_closed(self):",
+                "docstring": null,
+                "body": "self.keyboard.unbind(on_key_down=self.on_keyboard_down)\n        self.keyboard.unbind(on_key_dup=self.on_keyboard_up)\n        self.keyboard = None"
+            },
+            {
+                "header": "def moveBullets(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "for bullet in ",
+                    "removedWords": "self.planeShots:",
+                    "bodyAfter": "\n            curSize = bullet.size_hint[0]\n            bullet.size_hint = (curSize-self.BULLET_SPEED, curSize-self.BULLET_SPEED)\n            bullet.pos_hint[\"center_y\"] += self.BULLET_UPTHRUST\n            if curSize <= 0:\n                self.planeShots.remove(bullet)\n                self.remove_widget(bullet)",
+                    "numWordsRemoved": 2
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\MiG Mania\\Saves\\main14.py",
+        "contents": [
+            {
+                "header": "def playGame(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.homeBtnDisabled = True\n        self.currentEvent.cancel()\n        # Make widgets invisible\n        self.timeCounter = 0\n        for child in self.children:\n            child.color = (0, 0, 0, 0)\n",
+                    "prefix": "          ",
+                    "removedWords": "  child.background_color = (0, 0, 0, 0)",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 5
+                }
+            },
+            {
+                "header": "def planeShoot(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.shootSound.play()\n        self.planeShots.append(Image(source=\"images/playerBullet.png\", allow_stretch=True,\n                                     size_hint=(self.BULLET_SIZE, self.BULLET_SIZE),\n",
+                    "prefix": "                                     pos_hint={\"center_x\": ",
+                    "removedWords": "self.planeRelX, \"center_y\": self.planeRelY}))",
+                    "bodyAfter": "\n        self.add_widget(self.planeShots[-1])",
+                    "numWordsRemoved": 5
+                }
+            },
+            {
+                "header": "def updateDistance(self, dt):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.distanceTravelled += dt*10*((1 + self.increaseRate*10)**2)\n",
+                    "prefix": "        if self.distanceTravelled",
+                    "removedWords": " > 1000:",
+                    "bodyAfter": "\n            shownDistance = round(self.distanceTravelled/1000, 1)\n            unit = \" km\"\n        else:\n            shownDistance = int(self.distanceTravelled)\n            unit = \" m\"",
+                    "numWordsRemoved": 2
+                }
+            },
+            {
+                "header": "def on_touch_up(self, touch):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "if self.playingGame:\n            if \"spacebar\" in self.keys:\n                self.keys.remove(\"spacebar\")\n",
+                    "prefix": "          ",
+                    "removedWords": "  if \"arrows\" in self.keys:",
+                    "bodyAfter": "\n                self.keys.remove(\"arrows\")\n            self.prevPosX = None\n            self.prevPosY = None",
+                    "numWordsRemoved": 6
+                }
+            },
+            {
+                "header": "def spawnItem(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "itemType = choice(self.",
+                    "removedWords": "ITEM_CHOICES)  # Selects item type",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 5
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\MiG Mania\\Saves\\main4.py",
+        "contents": [
+            {
+                "header": "def playGame(self):",
+                "docstring": null,
+                "body": "pass"
+            },
+            {
+                "header": "def __init__(self, **kwargs):",
+                "docstring": null,
+                "body": "super(Main, self).__init__(**kwargs)\n        self.mainTheme.play()\n        Clock.schedule_interval(self.updateMenu, 1/self.FPS)"
+            },
+            {
+                "header": "def build(self):",
+                "docstring": null,
+                "body": "return Main()"
+            },
+            {
+                "header": "def howToPlay(self):",
+                "docstring": null,
+                "body": "pass"
+            },
+            {
+                "header": "def updateMenu(self, dt):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "# Move plane\n",
+                    "prefix": "        if self.ANIMATION_MIN_X <= self.animationX + self.moveX <= ",
+                    "removedWords": "self.ANIMATION_MAX_X:",
+                    "bodyAfter": "\n            self.animationX += self.moveX\n        else:\n            self.moveX = choice([-1, 1]) * randint(200, 1000) / 1000000",
+                    "numWordsRemoved": 2
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\MiG Mania\\Saves\\main18.py",
+        "contents": [
+            {
+                "header": "def playFlyingSound(self, dt):",
+                "docstring": null,
+                "body": "self.propellerFlying.play()"
+            },
+            {
+                "header": "def updateDistance(self, dt):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "self.distanceTravelled ",
+                    "removedWords": "+= dt*10*((1 + self.increaseRate*10)**2)",
+                    "bodyAfter": "\n        if self.distanceTravelled > 1000:\n            shownDistance = round(self.distanceTravelled/1000, 1)\n            unit = \" km\"\n        else:\n            shownDistance = int(self.distanceTravelled)\n            unit = \" m\"",
+                    "numWordsRemoved": 5
+                }
+            },
+            {
+                "header": "def moveBullets(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "for bullet in self.planeShots:\n            curSize = bullet.size_hint[0]\n            bullet.size_hint = (curSize - self.BULLET_SPEED, curSize - self.BULLET_SPEED)\n            bullet.pos_hint[\"center_y\"] += self.BULLET_UPTHRUST\n",
+                    "prefix": "            x, y = bullet.pos_hint[\"center_x\"]*self.width, ",
+                    "removedWords": "bullet.pos_hint[\"center_y\"]*self.height",
+                    "bodyAfter": "\n            bulletHit = False",
+                    "numWordsRemoved": 3
+                }
+            },
+            {
+                "header": "def playGame(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.homeBtnDisabled = True\n        self.currentEvent.cancel()\n",
+                    "prefix": "   ",
+                    "removedWords": "     # Make widgets invisible",
+                    "bodyAfter": "\n        self.timeCounter = 0\n        for child in self.children:\n            child.color = (0, 0, 0, 0)\n            child.background_color = (0, 0, 0, 0)",
+                    "numWordsRemoved": 6
+                }
+            },
+            {
+                "header": "def spawnItem(self):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "itemType ",
+                    "removedWords": "= choice(self.ITEM_CHOICES)  # Selects item type",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 7
+                }
+            }
+        ]
+    },
+    {
+        "file": "C:\\Programming\\Python\\Games\\MiG Mania\\Saves\\main12.py",
+        "contents": [
+            {
+                "header": "def quitGame(self, *args):",
+                "docstring": null,
+                "body": "self.propellerFlying.stop()\n        self.propellerStartUp.stop()"
+            },
+            {
+                "header": "def howToPlay(self):",
+                "docstring": null,
+                "body": "pass"
+            },
+            {
+                "header": "def on_touch_up(self, touch):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "if self.playingGame:\n            if \"spacebar\" in self.keys:\n                self.keys.remove(\"spacebar\")\n",
+                    "prefix": "        ",
+                    "removedWords": "    if \"arrows\" in self.keys:",
+                    "bodyAfter": "\n                self.keys.remove(\"arrows\")\n            self.prevPosX = None\n            self.prevPosY = None",
+                    "numWordsRemoved": 7
+                }
+            },
+            {
+                "header": "def unPauseGame(self, *args):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "self.canvas.remove(self.grayOut)\n",
+                    "prefix": "        for widget in",
+                    "removedWords": " [self.pauseLabel, self.resumeBtn, self.quitBtn]:",
+                    "bodyAfter": "\n            self.remove_widget(widget)",
+                    "numWordsRemoved": 2
+                }
+            },
+            {
+                "header": "def updateMenu(self, dt):",
+                "docstring": null,
+                "body": {
+                    "bodyBefore": "# Move plane\n        if self.ANIMATION_MIN_X <= self.animationX + self.moveX <= self.ANIMATION_MAX_X:\n            self.animationX += self.moveX * dt\n        else:\n",
+                    "prefix": "          ",
+                    "removedWords": "  if self.animationX < self.ANIMATION_MIN_X:",
+                    "bodyAfter": "\n                self.animationX = self.ANIMATION_MIN_X\n            elif self.animationX > self.ANIMATION_MAX_X:\n                self.animationX = self.ANIMATION_MAX_X",
+                    "numWordsRemoved": 7
+                }
+            }
+        ]
+    }
+]
