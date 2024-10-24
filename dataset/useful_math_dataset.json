@@ -1,0 +1,325 @@
+[
+    {
+        "file": "C:\\Programming\\Python\\code-completion-evaluation\\math\\main.py",
+        "contents": [
+            {
+                "header": "def square_root(x):",
+                "docstring": "\"\"\"Return the square root of x.\"\"\"",
+                "body": "return math.sqrt(x)"
+            },
+            {
+                "header": "def multiply(x, y):",
+                "docstring": "\"\"\"Return the product of x and y.\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "return",
+                    "removedWords": " x * y",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 3
+                }
+            },
+            {
+                "header": "def knapsack(weights, values, capacity):",
+                "docstring": "\"\"\"Return the maximum value that can be obtained from the knapsack problem.\"\"\"",
+                "body": {
+                    "bodyBefore": "n = len(values)\n",
+                    "prefix": "    dp = [[0 for _ in range(capacity + 1)] for _ ",
+                    "removedWords": "in range(n + 1)]",
+                    "bodyAfter": "\n    for i in range(1, n + 1):\n        for w in range(capacity + 1):\n            if weights[i - 1] <= w:\n                dp[i][w] = max(dp[i - 1][w], dp[i - 1][w - weights[i - 1]] + values[i - 1])\n            else:\n                dp[i][w] = dp[i - 1][w]\n    return dp[n][capacity]",
+                    "numWordsRemoved": 4
+                }
+            },
+            {
+                "header": "def is_valid_email(email):",
+                "docstring": "\"\"\"Return True if the email address is valid, else False.\"\"\"",
+                "body": "import re\n    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'\n    return bool(re.match(pattern, email))"
+            },
+            {
+                "header": "def is_anagram(str1, str2):",
+                "docstring": "\"\"\"Return True if str1 and str2 are anagrams, else False.\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "cleaned_str1 =",
+                    "removedWords": " sorted(str1.replace(' ', '').lower())",
+                    "bodyAfter": "\n    cleaned_str2 = sorted(str2.replace(' ', '').lower())\n    return cleaned_str1 == cleaned_str2",
+                    "numWordsRemoved": 5
+                }
+            },
+            {
+                "header": "def longest_common_subsequence(str1, str2):",
+                "docstring": "\"\"\"Return the longest common subsequence of str1 and str2.\"\"\"",
+                "body": {
+                    "bodyBefore": "dp = [[0] * (len(str2) + 1) for _ in range(len(str1) + 1)]\n    for i in range(1, len(str1) + 1):\n        for j in range(1, len(str2) + 1):\n            if str1[i - 1] == str2[j - 1]:\n",
+                    "prefix": "                dp[i][j] = dp[i - 1][j - 1] ",
+                    "removedWords": "+ 1",
+                    "bodyAfter": "\n            else:\n                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])\n    return dp[-1][-1]",
+                    "numWordsRemoved": 2
+                }
+            },
+            {
+                "header": "def quicksort(arr):",
+                "docstring": "\"\"\"Return a sorted list using the quicksort algorithm.\"\"\"",
+                "body": {
+                    "bodyBefore": "if len(arr) <= 1:\n        return arr\n    pivot = arr[len(arr) // 2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n",
+                    "prefix": "    return quicksort(left) +",
+                    "removedWords": " middle + quicksort(right)",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 3
+                }
+            },
+            {
+                "header": "def find_longest_word(words):",
+                "docstring": "\"\"\"Return the longest word from a list of words.\"\"\"",
+                "body": {
+                    "bodyBefore": "longest_word = \"\"\n    for word in words:\n",
+                    "prefix": "        ",
+                    "removedWords": "if len(word) > len(longest_word):",
+                    "bodyAfter": "\n            longest_word = word\n    return longest_word",
+                    "numWordsRemoved": 4
+                }
+            },
+            {
+                "header": "def dijkstra(graph, start):",
+                "docstring": "\"\"\"Return the shortest path distances from start to all other nodes in the graph.\"\"\"",
+                "body": {
+                    "bodyBefore": "import heapq\n",
+                    "prefix": " ",
+                    "removedWords": "   queue = [(0, start)]",
+                    "bodyAfter": "\n    distances = {node: float('infinity') for node in graph}\n    distances[start] = 0\n    while queue:\n        current_distance, current_node = heapq.heappop(queue)\n        if current_distance > distances[current_node]:\n            continue\n        for neighbor, weight in graph[current_node].items():\n            distance = current_distance + weight\n            if distance < distances[neighbor]:\n                distances[neighbor] = distance\n                heapq.heappush(queue, (distance, neighbor))\n    return distances",
+                    "numWordsRemoved": 4
+                }
+            },
+            {
+                "header": "def sieve_of_eratosthenes(limit):",
+                "docstring": "\"\"\"Return a list of all prime numbers up to the given limit using the Sieve of Eratosthenes.\"\"\"",
+                "body": {
+                    "bodyBefore": "sieve = [True] * (limit + 1)\n    sieve[0] = sieve[1] = False  # 0 and 1 are not prime numbers\n",
+                    "prefix": "    for number in range(2, int(limit ** 0.",
+                    "removedWords": "5) + 1):",
+                    "bodyAfter": "\n        if sieve[number]:\n            for multiple in range(number * number, limit + 1, number):\n                sieve[multiple] = False\n    return [num for num, is_prime in enumerate(sieve) if is_prime]",
+                    "numWordsRemoved": 3
+                }
+            },
+            {
+                "header": "def count_vowels(s):",
+                "docstring": "\"\"\"Return the number of vowels in a given string.\"\"\"",
+                "body": {
+                    "bodyBefore": "vowels = 'aeiouAEIOU'\n    count = 0\n",
+                    "prefix": "   ",
+                    "removedWords": " for char in s:",
+                    "bodyAfter": "\n        if char in vowels:\n            count += 1\n    return count",
+                    "numWordsRemoved": 4
+                }
+            },
+            {
+                "header": "def merge_sorted_lists(list1, list2):",
+                "docstring": "\"\"\"Return a new sorted list by merging two sorted lists.\"\"\"",
+                "body": {
+                    "bodyBefore": "merged = []\n    i, j = 0, 0\n    while i < len(list1) and j < len(list2):\n",
+                    "prefix": " ",
+                    "removedWords": "       if list1[i] < list2[j]:",
+                    "bodyAfter": "\n            merged.append(list1[i])\n            i += 1\n        else:\n            merged.append(list2[j])\n            j += 1\n    merged.extend(list1[i:])\n    merged.extend(list2[j:])\n    return merged",
+                    "numWordsRemoved": 7
+                }
+            },
+            {
+                "header": "def subtract(x, y):",
+                "docstring": "\"\"\"Return the difference of x and y.\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "return",
+                    "removedWords": " x - y",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 3
+                }
+            },
+            {
+                "header": "def gcd(a, b):",
+                "docstring": "\"\"\"Return the greatest common divisor of a and b using the Euclidean algorithm.\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "while b ",
+                    "removedWords": "!= 0:",
+                    "bodyAfter": "\n        a, b = b, a % b\n    return a",
+                    "numWordsRemoved": 2
+                }
+            },
+            {
+                "header": "def area_of_circle(radius):",
+                "docstring": "\"\"\"Return the area of a circle given its radius.\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "return math.pi ",
+                    "removedWords": "* (radius ** 2)",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 2
+                }
+            },
+            {
+                "header": "def is_prime(n):",
+                "docstring": "\"\"\"Return True if n is a prime number, else False.\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "if",
+                    "removedWords": " n <= 1:",
+                    "bodyAfter": "\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True",
+                    "numWordsRemoved": 3
+                }
+            },
+            {
+                "header": "def transpose_matrix(matrix):",
+                "docstring": "\"\"\"Return the transpose of a given matrix.\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "return [[matrix[j][i] for j in ",
+                    "removedWords": "range(len(matrix))] for i in range(len(matrix[0]))]",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 5
+                }
+            },
+            {
+                "header": "def add(x, y):",
+                "docstring": "\"\"\"Return the sum of x and y.\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "return ",
+                    "removedWords": "x + y",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 3
+                }
+            },
+            {
+                "header": "def fibonacci_sequence(n):",
+                "docstring": "\"\"\"Return a list of the first n Fibonacci numbers.\"\"\"",
+                "body": {
+                    "bodyBefore": "sequence = []\n",
+                    "prefix": "    a, ",
+                    "removedWords": "b = 0, 1",
+                    "bodyAfter": "\n    for _ in range(n):\n        sequence.append(a)\n        a, b = b, a + b\n    return sequence",
+                    "numWordsRemoved": 4
+                }
+            },
+            {
+                "header": "def divide(x, y):",
+                "docstring": "\"\"\"Return the quotient of x and y.\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "return x",
+                    "removedWords": " / y",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 2
+                }
+            },
+            {
+                "header": "def find_median(numbers):",
+                "docstring": "\"\"\"Return the median of a list of numbers.\"\"\"",
+                "body": {
+                    "bodyBefore": "sorted_numbers = sorted(numbers)\n    count = len(sorted_numbers)\n    mid = count // 2\n",
+                    "prefix": "    if ",
+                    "removedWords": "count % 2 == 0:",
+                    "bodyAfter": "\n        return (sorted_numbers[mid - 1] + sorted_numbers[mid]) / 2\n    return sorted_numbers[mid]",
+                    "numWordsRemoved": 5
+                }
+            },
+            {
+                "header": "def factorial(n):",
+                "docstring": "\"\"\"Return the factorial of n.\"\"\"",
+                "body": {
+                    "bodyBefore": "result = 1\n",
+                    "prefix": "    for ",
+                    "removedWords": "i in range(1, n + 1):",
+                    "bodyAfter": "\n        result *= i\n    return result",
+                    "numWordsRemoved": 6
+                }
+            },
+            {
+                "header": "def calculate_mean(numbers):",
+                "docstring": "\"\"\"Return the mean of a list of numbers.\"\"\"",
+                "body": {
+                    "bodyBefore": "total = sum(numbers)\n    count = len(numbers)\n",
+                    "prefix": "    return total / ",
+                    "removedWords": "count if count > 0 else 0",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 7
+                }
+            },
+            {
+                "header": "def merge_dictionaries(dict1, dict2):",
+                "docstring": "\"\"\"Return a new dictionary that merges two dictionaries.\"\"\"",
+                "body": {
+                    "bodyBefore": "merged = dict1.copy()\n",
+                    "prefix": "    for ",
+                    "removedWords": "key, value in dict2.items():",
+                    "bodyAfter": "\n        if key in merged:\n            merged[key] += value  # Sum values if the key exists\n        else:\n            merged[key] = value\n    return merged",
+                    "numWordsRemoved": 5
+                }
+            },
+            {
+                "header": "def is_palindrome(s):",
+                "docstring": "\"\"\"Return True if s is a palindrome, else False.\"\"\"",
+                "body": {
+                    "bodyBefore": "cleaned = ''.join(char.lower() for char in s if char.isalnum())\n",
+                    "prefix": "   ",
+                    "removedWords": " return cleaned == cleaned[::-1]",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 4
+                }
+            },
+            {
+                "header": "def prime_factors(n):",
+                "docstring": "\"\"\"Return a list of the prime factors of n.\"\"\"",
+                "body": {
+                    "bodyBefore": "factors = []\n    divisor = 2\n    while n > 1:\n",
+                    "prefix": "  ",
+                    "removedWords": "      while n % divisor == 0:",
+                    "bodyAfter": "\n            factors.append(divisor)\n            n //= divisor\n        divisor += 1\n    return factors",
+                    "numWordsRemoved": 9
+                }
+            },
+            {
+                "header": "def fibonacci(n):",
+                "docstring": "\"\"\"Return the nth Fibonacci number.\"\"\"",
+                "body": {
+                    "bodyBefore": "a, b = 0, 1\n    for _ in range(n):\n",
+                    "prefix": "        a, b =",
+                    "removedWords": " b, a + b",
+                    "bodyAfter": "\n    return a",
+                    "numWordsRemoved": 4
+                }
+            },
+            {
+                "header": "def matrix_multiplication(matrix_a, matrix_b):",
+                "docstring": "\"\"\"Return the product of two matrices.\"\"\"",
+                "body": {
+                    "bodyBefore": "result = [[0] * len(matrix_b[0]) for _ in range(len(matrix_a))]\n    for i in range(len(matrix_a)):\n        for j in range(len(matrix_b[0])):\n",
+                    "prefix": "           ",
+                    "removedWords": " for k in range(len(matrix_b)):",
+                    "bodyAfter": "\n                result[i][j] += matrix_a[i][k] * matrix_b[k][j]\n    return result",
+                    "numWordsRemoved": 4
+                }
+            },
+            {
+                "header": "def power(base, exponent):",
+                "docstring": "\"\"\"Return base raised to the power of exponent.\"\"\"",
+                "body": {
+                    "bodyBefore": "result = 1\n",
+                    "prefix": "    ",
+                    "removedWords": "for _ in range(exponent):",
+                    "bodyAfter": "\n        result *= base\n    return result",
+                    "numWordsRemoved": 4
+                }
+            },
+            {
+                "header": "def lcm(a, b):",
+                "docstring": "\"\"\"Return the least common multiple of a and b.\"\"\"",
+                "body": {
+                    "bodyBefore": "",
+                    "prefix": "return ",
+                    "removedWords": "abs(a * b) // gcd(a, b)",
+                    "bodyAfter": "",
+                    "numWordsRemoved": 6
+                }
+            }
+        ]
+    }
+]

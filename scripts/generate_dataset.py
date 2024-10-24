@@ -2,8 +2,9 @@ import json
 import os
 import random
 import re
+import sys
 
-MAX_FUNCS_PER_FILE = 5
+MAX_FUNCS_PER_FILE = 50
 MAX_FILES = 10
 
 
@@ -158,8 +159,12 @@ def splitCode(funcs, minWordsToRemove=3, maxWordsToRemove=9, limit=MAX_FUNCS_PER
 
 
 if __name__ == "__main__":
-    directoryToSearch = "C:\Programming\Python\Games\MiG Mania"
-    outputFile = "dataset\python_kivy_app_dataset.json"
+    if len(sys.argv) > 2:
+        directoryToSearch = sys.argv[1]
+        outputFile = sys.argv[2]
+    else:
+        print("Insufficient number of arguments provided.")
+        exit(-1)
 
     pythonFiles = findPythonFiles(directoryToSearch)
     dataset = [{"file": file, "contents": splitCode(extractFunctionsFromFile(file))} for file in pythonFiles]
