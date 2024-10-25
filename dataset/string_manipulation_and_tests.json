@@ -1,0 +1,223 @@
+[
+    {
+        "file": "C:\\Programming\\Python\\code-completion-evaluation\\sample\\string\\src\\string_manipulation.py",
+        "contents": [
+            {
+                "header": "def reverse_string(s):",
+                "docstring": "\"\"\"Returns the reversed string.\"\"\"",
+                "body": "return s[::-1]",
+                "test": "self.assertEqual(reverse_string(\"hello\"), \"olleh\")\n        self.assertEqual(reverse_string(\"\"), \"\")\n        self.assertEqual(reverse_string(\"a\"), \"a\")\n        self.assertEqual(reverse_string(\"12345\"), \"54321\")"
+            },
+            {
+                "header": "def to_uppercase(s):",
+                "docstring": "\"\"\"Converts all characters to uppercase.\"\"\"",
+                "body": "return s.upper()",
+                "test": "self.assertEqual(to_uppercase(\"hello\"), \"HELLO\")\n        self.assertEqual(to_uppercase(\"Hello World\"), \"HELLO WORLD\")\n        self.assertEqual(to_uppercase(\"\"), \"\")\n        self.assertEqual(to_uppercase(\"123\"), \"123\")\n        self.assertEqual(to_uppercase(\"already uppercase\"), \"ALREADY UPPERCASE\")"
+            },
+            {
+                "header": "def to_lowercase(s):",
+                "docstring": "\"\"\"Converts all characters to lowercase.\"\"\"",
+                "body": "return s.lower()",
+                "test": "self.assertEqual(to_lowercase(\"HELLO\"), \"hello\")\n        self.assertEqual(to_lowercase(\"Hello World\"), \"hello world\")\n        self.assertEqual(to_lowercase(\"\"), \"\")\n        self.assertEqual(to_lowercase(\"123\"), \"123\")\n        self.assertEqual(to_lowercase(\"already lowercase\"), \"already lowercase\")"
+            },
+            {
+                "header": "def capitalize_first(s):",
+                "docstring": "\"\"\"Capitalizes the first letter of the string.\"\"\"",
+                "body": "return s.capitalize()",
+                "test": "self.assertEqual(capitalize_first(\"hello\"), \"Hello\")\n        self.assertEqual(capitalize_first(\"hello world\"), \"Hello world\")\n        self.assertEqual(capitalize_first(\"HELLO\"), \"Hello\")\n        self.assertEqual(capitalize_first(\"123abc\"), \"123abc\")\n        self.assertEqual(capitalize_first(\"\"), \"\")"
+            },
+            {
+                "header": "def title_case(s):",
+                "docstring": "\"\"\"Converts the string to title case.\"\"\"",
+                "body": "return s.title()",
+                "test": "self.assertEqual(title_case(\"hello world\"), \"Hello World\")\n        self.assertEqual(title_case(\"HELLO WORLD\"), \"Hello World\")\n        self.assertEqual(title_case(\"hello\"), \"Hello\")\n        self.assertEqual(title_case(\"123abc title\"), \"123Abc Title\")\n        self.assertEqual(title_case(\"\"), \"\")"
+            },
+            {
+                "header": "def count_substring(s, sub):",
+                "docstring": "\"\"\"Counts occurrences of a substring.\"\"\"",
+                "body": "return s.count(sub)",
+                "test": "self.assertEqual(count_substring(\"hello world\", \"o\"), 2)\n        self.assertEqual(count_substring(\"abababab\", \"ab\"), 4)\n        self.assertEqual(count_substring(\"hello\", \"x\"), 0)\n        self.assertEqual(count_substring(\"\", \"a\"), 0)\n        self.assertEqual(count_substring(\"aaaa\", \"aa\"), 2)"
+            },
+            {
+                "header": "def is_palindrome(s):",
+                "docstring": "\"\"\"Checks if the string is a palindrome.\"\"\"",
+                "body": "return s == s[::-1]",
+                "test": "self.assertTrue(is_palindrome(\"racecar\"))\n        self.assertTrue(is_palindrome(\"madam\"))\n        self.assertFalse(is_palindrome(\"hello\"))\n        self.assertTrue(is_palindrome(\"a\"))\n        self.assertTrue(is_palindrome(\"\"))"
+            },
+            {
+                "header": "def remove_whitespace(s):",
+                "docstring": "\"\"\"Removes all whitespace from the string.\"\"\"",
+                "body": "return \"\".join(s.split())",
+                "test": "self.assertEqual(remove_whitespace(\"hello world\"), \"helloworld\")\n        self.assertEqual(remove_whitespace(\" a b c \"), \"abc\")\n        self.assertEqual(remove_whitespace(\"\"), \"\")\n        self.assertEqual(remove_whitespace(\"   \"), \"\")\n        self.assertEqual(remove_whitespace(\"no whitespaces\"), \"nowhitespaces\")"
+            },
+            {
+                "header": "def replace_substring(s, old, new):",
+                "docstring": "\"\"\"Replaces occurrences of a substring with another.\"\"\"",
+                "body": "return s.replace(old, new)",
+                "test": "self.assertEqual(replace_substring(\"hello world\", \"world\", \"there\"), \"hello there\")\n        self.assertEqual(replace_substring(\"aaa\", \"a\", \"b\"), \"bbb\")\n        self.assertEqual(replace_substring(\"hello\", \"x\", \"y\"), \"hello\")\n        self.assertEqual(replace_substring(\"\", \"a\", \"b\"), \"\")\n        self.assertEqual(replace_substring(\"aaa\", \"aa\", \"b\"), \"ba\")"
+            },
+            {
+                "header": "def repeat_string(s, n):",
+                "docstring": "\"\"\"Repeats the string n times.\"\"\"",
+                "body": "return s * n",
+                "test": "self.assertEqual(repeat_string(\"hello\", 3), \"hellohellohello\")\n        self.assertEqual(repeat_string(\"ab\", 2), \"abab\")\n        self.assertEqual(repeat_string(\"a\", 5), \"aaaaa\")\n        self.assertEqual(repeat_string(\"\", 10), \"\")\n        self.assertEqual(repeat_string(\"test\", 0), \"\")"
+            },
+            {
+                "header": "def strip_string(s):",
+                "docstring": "\"\"\"Removes leading and trailing whitespace.\"\"\"",
+                "body": "return s.strip()",
+                "test": "self.assertEqual(strip_string(\"   hello world   \"), \"hello world\")\n        self.assertEqual(strip_string(\"no_whitespace\"), \"no_whitespace\")\n        self.assertEqual(strip_string(\"   leading\"), \"leading\")\n        self.assertEqual(strip_string(\"trailing   \"), \"trailing\")\n        self.assertEqual(strip_string(\"\"), \"\")"
+            },
+            {
+                "header": "def split_string(s, delimiter=\" \"):",
+                "docstring": "\"\"\"Splits the string by a delimiter.\"\"\"",
+                "body": "return s.split(delimiter)",
+                "test": "self.assertEqual(split_string(\"hello world\"), [\"hello\", \"world\"])\n        self.assertEqual(split_string(\"a,b,c\", \",\"), [\"a\", \"b\", \"c\"])\n        self.assertEqual(split_string(\"no delimiter\"), [\"no\", \"delimiter\"])\n        self.assertEqual(split_string(\"split,me,again,\", \",\"), [\"split\", \"me\", \"again\", \"\"])\n        self.assertEqual(split_string(\"\"), [\"\"])"
+            },
+            {
+                "header": "def join_strings(strings, delimiter=\" \"):",
+                "docstring": "\"\"\"Joins a list of strings with a delimiter.\"\"\"",
+                "body": "return delimiter.join(strings)",
+                "test": "self.assertEqual(join_strings([\"hello\", \"world\"], \" \"), \"hello world\")\n        self.assertEqual(join_strings([\"a\", \"b\", \"c\"], \",\"), \"a,b,c\")\n        self.assertEqual(join_strings([\"single\"]), \"single\")\n        self.assertEqual(join_strings([\"\", \"blank\", \"\"], \"-\"), \"-blank-\")\n        self.assertEqual(join_strings([], \",\"), \"\")"
+            },
+            {
+                "header": "def count_vowels(s):",
+                "docstring": "\"\"\"Counts the number of vowels in the string.\"\"\"",
+                "body": "vowels = \"aeiouAEIOU\"\n    return sum(1 for char in s if char in vowels)",
+                "test": "self.assertEqual(count_vowels(\"hello\"), 2)\n        self.assertEqual(count_vowels(\"AEIOU\"), 5)\n        self.assertEqual(count_vowels(\"bcdfg\"), 0)\n        self.assertEqual(count_vowels(\"\"), 0)\n        self.assertEqual(count_vowels(\"MixedCASE vowels\"), 6)"
+            },
+            {
+                "header": "def remove_punctuation(s):",
+                "docstring": "\"\"\"Removes punctuation from the string.\"\"\"",
+                "body": "import string\n    return \"\".join(char for char in s if char not in string.punctuation)",
+                "test": "self.assertEqual(remove_punctuation(\"Hello, world!\"), \"Hello world\")\n        self.assertEqual(remove_punctuation(\"No punctuation here\"), \"No punctuation here\")\n        self.assertEqual(remove_punctuation(\"...Ellipses...\"), \"Ellipses\")\n        self.assertEqual(remove_punctuation(\"What? This, too!\"), \"What This too\")\n        self.assertEqual(remove_punctuation(\"\"), \"\")"
+            },
+            {
+                "header": "def swap_case(s):",
+                "docstring": "\"\"\"Swaps the case of all characters in the string.\"\"\"",
+                "body": "return s.swapcase()",
+                "test": "self.assertEqual(swap_case(\"Hello World\"), \"hELLO wORLD\")\n        self.assertEqual(swap_case(\"123\"), \"123\")\n        self.assertEqual(swap_case(\"\"), \"\")\n        self.assertEqual(swap_case(\"MiXeD CaSe\"), \"mIxEd cAsE\")\n        self.assertEqual(swap_case(\"UPPERlower\"), \"upperLOWER\")"
+            },
+            {
+                "header": "def center_string(s, width, fillchar=\" \"):",
+                "docstring": "\"\"\"Centers the string with a given fill character.\"\"\"",
+                "body": "return s.center(width, fillchar)",
+                "test": "self.assertEqual(center_string(\"hello\", 10, \"-\"), \"--hello---\")\n        self.assertEqual(center_string(\"world\", 8, \"*\"), \"*world**\")\n        self.assertEqual(center_string(\"test\", 4), \"test\")\n        self.assertEqual(center_string(\"center\", 6), \"center\")\n        self.assertEqual(center_string(\"align\", 10), \"  align   \")"
+            },
+            {
+                "header": "def is_alpha(s):",
+                "docstring": "\"\"\"Checks if the string contains only alphabetic characters.\"\"\"",
+                "body": "return s.isalpha()",
+                "test": "self.assertTrue(is_alpha(\"HelloWorld\"))\n        self.assertFalse(is_alpha(\"Hello World\"))\n        self.assertFalse(is_alpha(\"123\"))\n        self.assertFalse(is_alpha(\"Hello123\"))\n        self.assertTrue(is_alpha(\"alpha\"))"
+            },
+            {
+                "header": "def is_digit(s):",
+                "docstring": "\"\"\"Checks if the string contains only digits.\"\"\"",
+                "body": "return s.isdigit()",
+                "test": "self.assertTrue(is_digit(\"123456\"))\n        self.assertFalse(is_digit(\"123 456\"))\n        self.assertFalse(is_digit(\"Hello123\"))\n        self.assertTrue(is_digit(\"007\"))\n        self.assertFalse(is_digit(\"test\"))"
+            },
+            {
+                "header": "def is_alphanumeric(s):",
+                "docstring": "\"\"\"Checks if the string contains only alphanumeric characters.\"\"\"",
+                "body": "return s.isalnum()",
+                "test": "self.assertTrue(is_alphanumeric(\"Hello123\"))\n        self.assertFalse(is_alphanumeric(\"Hello 123\"))\n        self.assertFalse(is_alphanumeric(\"!@#\"))\n        self.assertTrue(is_alphanumeric(\"alphanumeric\"))\n        self.assertTrue(is_alphanumeric(\"123456\"))"
+            },
+            {
+                "header": "def pad_left(s, width, fillchar=\" \"):",
+                "docstring": "\"\"\"Pads the string on the left with a fill character.\"\"\"",
+                "body": "return s.rjust(width, fillchar)",
+                "test": "self.assertEqual(pad_left(\"hello\", 10, \"-\"), \"-----hello\")\n        self.assertEqual(pad_left(\"world\", 8, \"*\"), \"***world\")\n        self.assertEqual(pad_left(\"pad\", 5), \"  pad\")\n        self.assertEqual(pad_left(\"left\", 4), \"left\")\n        self.assertEqual(pad_left(\"fit\", 2), \"fit\")"
+            },
+            {
+                "header": "def pad_right(s, width, fillchar=\" \"):",
+                "docstring": "\"\"\"Pads the string on the right with a fill character.\"\"\"",
+                "body": "return s.ljust(width, fillchar)",
+                "test": "self.assertEqual(pad_right(\"hello\", 10, \"-\"), \"hello-----\")\n        self.assertEqual(pad_right(\"world\", 8, \"*\"), \"world***\")\n        self.assertEqual(pad_right(\"pad\", 5), \"pad  \")\n        self.assertEqual(pad_right(\"right\", 5), \"right\")\n        self.assertEqual(pad_right(\"fit\", 2), \"fit\")"
+            },
+            {
+                "header": "def truncate_string(s, max_length):",
+                "docstring": "\"\"\"Truncates the string to a maximum length.\"\"\"",
+                "body": "return s[:max_length] if len(s) > max_length else s",
+                "test": "self.assertEqual(truncate_string(\"hello world\", 5), \"hello\")\n        self.assertEqual(truncate_string(\"truncate\", 8), \"truncate\")\n        self.assertEqual(truncate_string(\"short\", 10), \"short\")\n        self.assertEqual(truncate_string(\"exactly\", 7), \"exactly\")\n        self.assertEqual(truncate_string(\"\", 5), \"\")"
+            },
+            {
+                "header": "def alternate_case(s):",
+                "docstring": "\"\"\"Alternates case of each letter in the string.\"\"\"",
+                "body": "result = []\n    for i, char in enumerate(s):\n        if i % 2 == 0:\n            result.append(char.lower())\n        else:\n            result.append(char.upper())\n    return \"\".join(result)",
+                "test": "self.assertEqual(alternate_case(\"hello\"), \"hElLo\")\n        self.assertEqual(alternate_case(\"world\"), \"wOrLd\")\n        self.assertEqual(alternate_case(\"\"), \"\")\n        self.assertEqual(alternate_case(\"abcdefg\"), \"aBcDeFg\")\n        self.assertEqual(alternate_case(\"HELLO\"), \"hElLo\")"
+            },
+            {
+                "header": "def remove_duplicate_words(s):",
+                "docstring": "\"\"\"Removes duplicate words from the string, keeping the first occurrence.\"\"\"",
+                "body": "words = s.split()\n    seen = set()\n    result = []\n    for word in words:\n        if word not in seen:\n            seen.add(word)\n            result.append(word)\n    return \" \".join(result)",
+                "test": "self.assertEqual(remove_duplicate_words(\"hello world hello\"), \"hello world\")\n        self.assertEqual(remove_duplicate_words(\"no duplicates here\"), \"no duplicates here\")\n        self.assertEqual(remove_duplicate_words(\"repeat repeat repeat\"), \"repeat\")\n        self.assertEqual(remove_duplicate_words(\"a a a b b c\"), \"a b c\")\n        self.assertEqual(remove_duplicate_words(\"\"), \"\")"
+            },
+            {
+                "header": "def most_frequent_char(s):",
+                "docstring": "\"\"\"Finds the most frequently occurring character in the string.\"\"\"",
+                "body": "from collections import Counter\n    if not s:\n        return \"\"\n    counts = Counter(s)\n    most_common = counts.most_common(1)[0]\n    return most_common[0]",
+                "test": "self.assertEqual(most_frequent_char(\"hello\"), \"l\")\n        self.assertEqual(most_frequent_char(\"abracadabra\"), \"a\")\n        self.assertEqual(most_frequent_char(\"xyz\"), \"x\")\n        self.assertEqual(most_frequent_char(\"\"), \"\")\n        self.assertEqual(most_frequent_char(\"aabbcc\"), \"a\")  # First in tie"
+            },
+            {
+                "header": "def wrap_text(s, width):",
+                "docstring": "\"\"\"Wraps text to a specific width.\"\"\"",
+                "body": "lines = []\n    while len(s) > width:\n        line = s[:width].rsplit(\" \", 1)[0]\n        lines.append(line)\n        s = s[len(line):].strip()\n    lines.append(s)\n    return \"\\n\".join(lines)",
+                "test": "self.assertEqual(wrap_text(\"This is a simple wrap test\", 10), \"This is a\\nsimple\\nwrap test\")\n        self.assertEqual(wrap_text(\"Hello world\", 5), \"Hello\\nworld\")\n        self.assertEqual(wrap_text(\"Short text\", 20), \"Short text\")\n        self.assertEqual(wrap_text(\"Wrap this long sentence nicely\", 8), \"Wrap\\nthis\\nlong\\nsentence\\nnicely\")\n        self.assertEqual(wrap_text(\"\", 5), \"\")"
+            },
+            {
+                "header": "def longest_word(s):",
+                "docstring": "\"\"\"Finds the longest word in the string.\"\"\"",
+                "body": "words = s.split()\n    longest = max(words, key=len) if words else \"\"\n    return longest",
+                "test": "self.assertEqual(longest_word(\"Find the longest word in this sentence\"), \"sentence\")\n        self.assertEqual(longest_word(\"Short words only\"), \"Short\")\n        self.assertEqual(longest_word(\"one two three\"), \"three\")\n        self.assertEqual(longest_word(\"\"), \"\")\n        self.assertEqual(longest_word(\"a ab abc\"), \"abc\")"
+            },
+            {
+                "header": "def censor_words(s, bad_words):",
+                "docstring": "\"\"\"Censors specified words in the string with asterisks.\"\"\"",
+                "body": "words = s.split()\n    censored = [\n        \"*\" * len(word) if word.lower() in bad_words else word\n        for word in words\n    ]\n    return \" \".join(censored)",
+                "test": "self.assertEqual(censor_words(\"This is a bad word\", {\"bad\"}), \"This is a *** word\")\n        self.assertEqual(censor_words(\"Sensitive words are here\", {\"sensitive\", \"words\"}), \"********* ***** are here\")\n        self.assertEqual(censor_words(\"All clean here\", {\"not\", \"in\", \"text\"}), \"All clean here\")\n        self.assertEqual(censor_words(\"Word repeated word\", {\"word\"}), \"**** repeated ****\")\n        self.assertEqual(censor_words(\"\", {\"any\"}), \"\")"
+            },
+            {
+                "header": "def reverse_words_order(s):",
+                "docstring": "\"\"\"Reverses the order of words in the string.\"\"\"",
+                "body": "words = s.split()\n    return \" \".join(words[::-1])",
+                "test": "self.assertEqual(reverse_words_order(\"Hello world\"), \"world Hello\")\n        self.assertEqual(reverse_words_order(\"Python is fun\"), \"fun is Python\")\n        self.assertEqual(reverse_words_order(\"single\"), \"single\")\n        self.assertEqual(reverse_words_order(\"  multiple   spaces  \"), \"spaces multiple\")\n        self.assertEqual(reverse_words_order(\"\"), \"\")"
+            },
+            {
+                "header": "def compress_string(s):",
+                "docstring": "\"\"\"Compresses a string by collapsing consecutive characters.\"\"\"",
+                "body": "if not s:\n        return \"\"\n    result = []\n    count = 1\n    for i in range(1, len(s)):\n        if s[i] == s[i - 1]:\n            count += 1\n        else:\n            result.append(s[i - 1] + (str(count) if count > 1 else \"\"))\n            count = 1\n    result.append(s[-1] + (str(count) if count > 1 else \"\"))\n    return \"\".join(result)",
+                "test": "self.assertEqual(compress_string(\"aaabbc\"), \"a3b2c\")\n        self.assertEqual(compress_string(\"a\"), \"a\")\n        self.assertEqual(compress_string(\"\"), \"\")\n        self.assertEqual(compress_string(\"ccccc\"), \"c5\")\n        self.assertEqual(compress_string(\"ab\"), \"ab\")"
+            },
+            {
+                "header": "def snake_to_camel_case(s):",
+                "docstring": "\"\"\"Converts snake_case to camelCase.\"\"\"",
+                "body": "parts = s.split('_')\n    return parts[0] + ''.join(word.capitalize() for word in parts[1:])",
+                "test": "self.assertEqual(snake_to_camel_case(\"snake_case\"), \"snakeCase\")\n        self.assertEqual(snake_to_camel_case(\"another_example_here\"), \"anotherExampleHere\")\n        self.assertEqual(snake_to_camel_case(\"alreadyCamelCase\"), \"alreadyCamelCase\")\n        self.assertEqual(snake_to_camel_case(\"\"), \"\")\n        self.assertEqual(snake_to_camel_case(\"singleword\"), \"singleword\")"
+            },
+            {
+                "header": "def camel_to_snake_case(s):",
+                "docstring": "\"\"\"Converts camelCase to snake_case.\"\"\"",
+                "body": "result = []\n    for char in s:\n        if char.isupper():\n            result.append(\"_\" + char.lower())\n        else:\n            result.append(char)\n    return \"\".join(result)",
+                "test": "self.assertEqual(camel_to_snake_case(\"camelCase\"), \"camel_case\")\n        self.assertEqual(camel_to_snake_case(\"thisIsATest\"), \"this_is_a_test\")\n        self.assertEqual(camel_to_snake_case(\"already_snake_case\"), \"already_snake_case\")\n        self.assertEqual(camel_to_snake_case(\"singleWord\"), \"single_word\")\n        self.assertEqual(camel_to_snake_case(\"\"), \"\")"
+            },
+            {
+                "header": "def mask_sensitive_info(s):",
+                "docstring": "\"\"\"Masks sensitive information, such as email or phone numbers.\"\"\"",
+                "body": "import re\n    s = re.sub(r'\\b(\\w{3})\\w+@(\\w+\\.\\w+)', r'\\1****@\\2', s)  # Mask email\n    s = re.sub(r'\\b(\\d{3})\\d+(\\d{2})\\b', r'\\1****\\2', s)  # Mask phone\n    return s",
+                "test": "self.assertEqual(mask_sensitive_info(\"My email is test@example.com\"), \"My email is tes****@example.com\")\n        self.assertEqual(mask_sensitive_info(\"Call me at 1234567890\"), \"Call me at 123****90\")\n        self.assertEqual(mask_sensitive_info(\"Reach out at john.doe@mail.com or 9876543210\"), \"Reach out at john.doe@mail.com or 987****10\")\n        self.assertEqual(mask_sensitive_info(\"No sensitive info here\"), \"No sensitive info here\")\n        self.assertEqual(mask_sensitive_info(\"Contact: myname@domain.com\"), \"Contact: myn****@domain.com\")"
+            },
+            {
+                "header": "def word_wrap_with_indent(s, width, indent=0):",
+                "docstring": "\"\"\"Wraps text to a specific width with an optional indent.\"\"\"",
+                "body": "lines = []\n    while len(s) > width - indent:\n        line = s[:width - indent].rsplit(\" \", 1)[0]\n        lines.append(\" \" * indent + line)\n        s = s[len(line):].strip()\n    lines.append(\" \" * indent + s)\n    return \"\\n\".join(lines)",
+                "test": "self.assertEqual(word_wrap_with_indent(\"This is a long line of text that needs wrapping.\", 20, 4),\n                         \"    This is a long\\n    line of text\\n    that needs\\n    wrapping.\")\n        self.assertEqual(word_wrap_with_indent(\"Short line\", 20, 2), \"  Short line\")\n        self.assertEqual(word_wrap_with_indent(\"A line that is exactly twenty characters.\", 20, 2),\n                         \"  A line that is\\n  exactly twenty\\n  characters.\")\n        self.assertEqual(word_wrap_with_indent(\"A quick brown fox\", 10, 0), \"A quick\\nbrown fox\")\n        self.assertEqual(word_wrap_with_indent(\"\", 10, 0), \"\")"
+            },
+            {
+                "header": "def count_word_frequencies(s):",
+                "docstring": "\"\"\"Counts the frequency of each word in the string.\"\"\"",
+                "body": "from collections import Counter\n    words = s.lower().split()\n    return dict(Counter(words))",
+                "test": "self.assertEqual(count_word_frequencies(\"Hello world hello\"), {'hello': 2, 'world': 1})\n        self.assertEqual(count_word_frequencies(\"This is a test this is only a test\"),\n                         {'this': 2, 'is': 2, 'a': 2, 'test': 2, 'only': 1})\n        self.assertEqual(count_word_frequencies(\"\"), {})\n        self.assertEqual(count_word_frequencies(\"word word WORD\"), {'word': 3})\n        self.assertEqual(count_word_frequencies(\"Case insensitivity test case\"),\n                         {'case': 2, 'insensitivity': 1, 'test': 1})"
+            }
+        ]
+    }
+]

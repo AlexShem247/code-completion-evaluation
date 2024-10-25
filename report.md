@@ -199,4 +199,98 @@ Surprisingly, I thought that the more missing words, the less likely the AI was 
 
 I was not satisfied by the results and I wanted to see if the AI could do better if it wrote the function entire from scratch, rather than comparing a single line of code. Maybe the AI thinks differently to humans, but nevertheless produces overall code with the same functionality.
 
-To do this, I created a new library called...
+## Preparing the Data
+
+To do this, I created a new library called `string_manipulation.py` which contains 36 functions related to string processing. With it, I also created a test suite called `string_manipulation_test.py`, which testing every single function with a unit test consisting of several test cases.
+
+I processed this library into a new dataset using a new script I made called `generate_funcs_with_test.py`. This reads the sources files and looks for unit tests that pair up with its corresponding function.
+
+The result look something like this:
+
+```json
+[
+  {
+    "file": "C:\\...\\string\\src\\string_manipulation.py",
+    "contents": [
+      {
+        "header": "def reverse_string(s):",
+        "docstring": "\"\"\"Returns the reversed string.\"\"\"",
+        "body": "return s[::-1]",
+        "test": "self.assertEqual(reverse_string(\"hello\"), \"olleh\")\n    self.assertEq" // ...
+      }
+       // More functions
+      // ...
+    ]
+  }
+]
+```
+
+`func["test"]` stores the body of the unit test function as a string. Ideally, the best approach would be to store inputs to the function and their expected output, however for now this is a sufficient approach.
+
+## Testing the AI's Response
+### Setup
+
+Next, I created a file called `func_gen_accuracy.py`, which will test the AI generated version of the entire function against the expected results from the unit tests.
+
+To get the Python code evalution working, I first created a dummy tester, which just tested the function using the original function body.
+
+This can be found in function `test_func_dummy()`. The string to be executed looks something like this:
+```python
+import unittest
+class TestFunc(unittest.TestCase):
+    def test_myTest(self):
+        def reverse_string(s):
+            return s[::-1]
+        self.assertEqual(reverse_string("hello"), "olleh")
+        self.assertEqual(reverse_string(""), "")
+        self.assertEqual(reverse_string("a"), "a")
+        self.assertEqual(reverse_string("12345"), "54321")
+```
+
+Evaluating this tells us how the function performs. I ran the test on all the examples and as expected I got this:
+```commandline
+C:\...\string\src\string_manipulation.py
+Tests passed: 36
+Number of tests: 36
+```
+
+And when I broke the test, (both logically and syntactically), I got fewer test passing.
+
+Now, all I had to do was replace the function body, the response made from the AI. I rewrote the code to make the function treat each assertion as a different test, so we could return the percentage of passed tests, rather than just 0 and 1.
+
+### Results
+After running the code on all 36 examples and plotted the results on a graph, the results are as follows:
+
+![image info](img/Figure_2.png)
+
+The overall accuracy was 0.464. It seemed that the AI was quite good when the functions were of a small size (< 60 characters). When it got larger, the accuracy went down and there were no results with perfect accuracy.
+
+Even though, it achieved a score of 1.0 for a lot of short functions, it had even more functions with < 1.0. I thought that the AI would be able to easily generate them, but that does not seem the case.
+
+The AI is only slightly better at generating entire functions as opposed to auto completing individual lines.
+
+### Reducing the Input Data
+
+When running the test, I gave the AI both the header of the function and a docstring explaining what the function does. I thought it would be interesting to see what happens if you remove the docstring and only let the AI base its decision of the function name and arguments. Can it predict what the function does?
+
+I repeated the experiment, removing the docstrings from the input to the model and repeated the experiment. The results are as follows:
+
+![image info](img/Figure_3.png)
+
+The overall accuracy was 0.408. This is a smaller value than previously, however looking at the graph, the result seem to be closer together. There are more 1.0 results for small functions of size < 60, and more 0.0 results overall. It looks like the AI could either entirely understand what the function was supposed to do and can correctly implement it, or it had no idea or completely generated an incorrect function.
+
+# 5. Conclusions of the Experiment
+
+In conclusion, the evaluation of the TinyStarCoderPy AI code completion tool revealed a mixed performance in predicting and generating code.
+
+1. The initial manual assessment showed that although the AI could successfully complete simple functions with a very high accuracy score of 100%, in many cases it also produced unexpected and irrelevant outputs when working with more complex examples.
+There did not seem to be an exact link between number of missing words and its accuracy, resulting in an overall accuracy of approximately 50% in the initial test.
+
+2. Automating the evaluation process using metrics such as Exact Match, chrf and Levenshtein Distance could allow use to test the AI with many more examples than before.
+Among these, chrf seem the most reliable indicator of accuracy, with results quite similar with the manual (human) assessments.
+When tested on with a larger dataset, the AI produced an average accuracy of 42.5%, suggesting that sometimes it could produce useful results, there is a big room for improvement, particularly when generating code when working with more complex code.
+
+3. A second test, consisted the generation of entire functions, rather than finishing lines, resulted in an overall accuracy of 40.8% and a higher 46.4% when help was provided to the AI in the form of function documentation.
+The AI tended to do better with smaller, more straightforward functions, however as complexity increased, the AI's performance tended to decline, and it was not able to produce correct functions. 
+
+Overall, these results demonstrate the need for ongoing improvements on AI code completion tools, in particularly in handling harder coding tasks. Future work could involve expanding the dataset and enhancing the AI to improve it ability to predict and generate relevant code more reliably. It would be interesting to run this test using a different AI model, such as GPT and see if it can do better than _TinyStarCoderPy_.
