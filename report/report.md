@@ -1,12 +1,26 @@
 # Evaluation of Current AI Code Completion
 
+**Prepared by:** Alexander Shemaly
+
+**Date:** 26/10/2024
+
+## Contents  
+1. [Introduction](#1-introduction)  
+2. [Generating the Dataset](#2-generating-the-dataset)  
+3. [Text Prediction](#3-text-prediction)  
+4. [Automating the Evaluation of the AI](#4-automating-the-evaluation-of-the-ai)  
+5. [Testing the Code Written by the AI](#5-testing-the-code-written-by-the-ai)  
+6. [Conclusion of the Experiment](#6-conclusions-of-the-experiment)  
+
+# 1. Introduction
+
 The goal of this experiment was to find out how accurate current AI code completion tools are able to predict code and finish uncompleted code functions. 
 
 I decided that testing functions instead of entire files would be better since it provides a more accurate description of what the code should do.
 
 For this test, I am using the model _TinyStarCoderPy_ from [tiny_starcoder](https://huggingface.co/bigcode/tiny_starcoder_py).
 
-# 1. Generating the Dataset
+# 2. Generating the Dataset
 
 The first stage of this experiment is to generate some code samples. I created a simple mathematics library with 30 examples of functions, ranging from simple one-line definitions to increasingly complex bodies. This will be used for the initial test since its size is small and the function does not require any knowledge of third-party libraries. The result of the function is also quite straightforward as it is not ambiguous. The library looks something like this:
 
@@ -71,7 +85,7 @@ The result is a `JSON` dataset that looks something like this:
 ```
 With the datasets generated, I was now able to run _TinyStarCoderPy_'s prediction on it.
 
-# 2. Text Prediction
+# 3. Text Prediction
 
 I wrote a class called `TextGenerator` in `tiny_starcoder.py`, which contained the method `def predict_text(self, prompt, max_length=50)` that returns the AI's prediction. The prediction is concatenated onto the prompt and returned.
 
@@ -152,7 +166,7 @@ Results with a higher number of tests are more accurate, but we can see that the
 
 In order to achieve a more precise result, we need to run the tests on more examples. We can do this with automation.
 
-# 3. Automating the Evaluation of the AI
+# 4. Automating the Evaluation of the AI
 
 Performing the experiment with manual reviews allowed us to figure out approximately how good the AI is. We can then run different automatic metrics to judge the result and find out which one produces an output that is close to our evaluation. 
 
@@ -199,7 +213,7 @@ The Overall Average Accuracy was **0.724016**, which is higher than the sample (
 
 Surprisingly, I thought that the more missing words, the less likely the AI was to predict them, however, it does not seem to be the case. Perhaps the metric is too generous with its scoring.
 
-# 4. Testing the Code Written by the AI
+# 5. Testing the Code Written by the AI
 
 I was not satisfied by the results and I wanted to see if the AI could do better if it wrote the function entirely from scratch, rather than comparing a single line of code. Maybe the AI thinks differently to humans, but nevertheless produces overall code with the same functionality.
 
@@ -283,7 +297,7 @@ I repeated the experiment, removing the docstrings from the input to the model a
 
 The overall accuracy was 0.408. This is a smaller value than previously, however looking at the graph, the results seem to be closer together. There are more than 1.0 results for small functions of size < 60, and more 0.0 results overall. It looks like the AI could either entirely understand what the function was supposed to do and can correctly implement it, or it had no idea or completely generated an incorrect function.
 
-# 5. Conclusions of the Experiment
+# 6. Conclusions of the Experiment
 
 In conclusion, the evaluation of the TinyStarCoderPy AI code completion tool revealed a mixed performance in predicting and generating code.
 

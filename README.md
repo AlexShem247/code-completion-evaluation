@@ -1,6 +1,18 @@
-# code-completion-evaluation
-A dataset and evaluation framework for code completion using machine learning models. It includes scripts for generating code completion examples, running a model, and assessing its performance against annotated completions.
+# Code Completion Dataset Generation and Evaluation
 
-1. Manually show result for math_dataset and plot graph
-2. Try three different metrics, for entire dataset
-3. Do unit test metric for func_gen_accuracy
+## Overview
+
+This project focuses on creating a dataset of code completion examples sourced from personal repositories. It includes the evaluation of an open-source code completion model, such as TinyStarCoder, to analyse its performance through both manual review and automated metrics. The primary goal is to assess the effectiveness of code completion models in accurately predicting missing segments of code.
+
+### Project Structure
+
+- **Report**: The comprehensive report detailing the project’s findings is available in the `report/` directory in both Markdown and PDF formats.
+  
+- **Dataset**: The `dataset/` folder contains the generated datasets for analysis.
+  
+- **Scripts**: The `scripts/` directory includes scripts for:
+  - Generating the dataset
+  - Testing the AI code generation
+  - Producing graphs and visualisations
+  
+- **Sample Code**: The `sample/` directory features example code written specifically for this evaluation.
