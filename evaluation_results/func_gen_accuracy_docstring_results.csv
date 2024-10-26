@@ -1,0 +1,151 @@
+Function Header,Docstring,Body Length,Original Code,Predicted Code,Code Compiles,No. Tests Passed,No. Tests Available,Accuracy
+def reverse_string(s):,"""""""Returns the reversed string.""""""",14,return s[::-1],"""""""Returns the reversed string.""""""
+return s[::-1]",Yes,4,4,1.0
+def to_uppercase(s):,"""""""Converts all characters to uppercase.""""""",16,return s.upper(),"""""""Converts all characters to uppercase.""""""
+return ''.join(c.upper() for c in s)",Yes,5,5,1.0
+def to_lowercase(s):,"""""""Converts all characters to lowercase.""""""",16,return s.lower(),"""""""Converts all characters to lowercase.""""""
+return ''.join(c.lower() for c in s)",Yes,5,5,1.0
+def capitalize_first(s):,"""""""Capitalizes the first letter of the string.""""""",21,return s.capitalize(),"""""""Capitalizes the first letter of the string.""""""
+return s[0].upper() + s[1:]",Yes,3,5,0.6
+def title_case(s):,"""""""Converts the string to title case.""""""",16,return s.title(),"""""""Converts the string to title case.""""""
+return ''.join(c for c in s if c.isalnum())",Yes,1,5,0.2
+"def count_substring(s, sub):","""""""Counts occurrences of a substring.""""""",19,return s.count(sub),"""""""Counts occurrences of a substring.""""""
+return len(s) - len(sub)",Yes,1,5,0.2
+def is_palindrome(s):,"""""""Checks if the string is a palindrome.""""""",19,return s == s[::-1],"""""""Checks if the string is a palindrome.""""""
+return s == s[::-1]",Yes,5,5,1.0
+def remove_whitespace(s):,"""""""Removes all whitespace from the string.""""""",25,"return """".join(s.split())","""""""Removes all whitespace from the string.""""""
+return s.strip()",Yes,2,5,0.4
+"def replace_substring(s, old, new):","""""""Replaces occurrences of a substring with another.""""""",26,"return s.replace(old, new)","""""""Replaces occurrences of a substring with another.""""""
+return s[:old] + new + s[old + len(new):]",Yes,0,5,0.0
+"def repeat_string(s, n):","""""""Repeats the string n times.""""""",12,return s * n,"""""""Repeats the string n times.""""""
+return s[0:n] + s[n:]",Yes,1,5,0.2
+def strip_string(s):,"""""""Removes leading and trailing whitespace.""""""",16,return s.strip(),"""""""Removes leading and trailing whitespace.""""""
+return s.strip()",Yes,5,5,1.0
+"def split_string(s, delimiter="" ""):","""""""Splits the string by a delimiter.""""""",25,return s.split(delimiter),"""""""Splits the string by a delimiter.""""""
+return s.split(delimiter)",Yes,5,5,1.0
+"def join_strings(strings, delimiter="" ""):","""""""Joins a list of strings with a delimiter.""""""",30,return delimiter.join(strings),"""""""Joins a list of strings with a delimiter.""""""
+return delimiter.join(strings)",Yes,5,5,1.0
+def count_vowels(s):,"""""""Counts the number of vowels in the string.""""""",71,"vowels = ""aeiouAEIOU""
+    return sum(1 for char in s if char in vowels)","""""""Counts the number of vowels in the string.""""""
+return sum(1 for c in s if c.isalnum())",Yes,2,5,0.4
+def remove_punctuation(s):,"""""""Removes punctuation from the string.""""""",86,"import string
+    return """".join(char for char in s if char not in string.punctuation)","""""""Removes punctuation from the string.""""""
+return ''.join(ch for ch in s if ch not in string.punctuation)",Yes,1,5,0.2
+def swap_case(s):,"""""""Swaps the case of all characters in the string.""""""",19,return s.swapcase(),"""""""Swaps the case of all characters in the string.""""""
+return ''.join(c for c in s if c.isupper())",Yes,1,5,0.2
+"def center_string(s, width, fillchar="" ""):","""""""Centers the string with a given fill character.""""""",32,"return s.center(width, fillchar)","""""""Centers the string with a given fill character.""""""
+return s.center(width, fillchar)",Yes,5,5,1.0
+def is_alpha(s):,"""""""Checks if the string contains only alphabetic characters.""""""",18,return s.isalpha(),"""""""Checks if the string contains only alphabetic characters.""""""
+return all(c in string.ascii_letters for c in s)",Yes,0,5,0.0
+def is_digit(s):,"""""""Checks if the string contains only digits.""""""",18,return s.isdigit(),"""""""Checks if the string contains only digits.""""""
+try:
+int(s)
+return True
+except ValueError:
+return False",Yes,5,5,1.0
+def is_alphanumeric(s):,"""""""Checks if the string contains only alphanumeric characters.""""""",18,return s.isalnum(),"""""""Checks if the string contains only alphanumeric characters.""""""
+return any(c.isalnum() for c in s)",Yes,4,5,0.8
+"def pad_left(s, width, fillchar="" ""):","""""""Pads the string on the left with a fill character.""""""",31,"return s.rjust(width, fillchar)","""""""Pads the string on the left with a fill character.""""""
+return s + fillchar * (width - len(s))",Yes,2,5,0.4
+"def pad_right(s, width, fillchar="" ""):","""""""Pads the string on the right with a fill character.""""""",31,"return s.ljust(width, fillchar)","""""""Pads the string on the right with a fill character.""""""
+return s + fillchar * width",Yes,0,5,0.0
+"def truncate_string(s, max_length):","""""""Truncates the string to a maximum length.""""""",51,return s[:max_length] if len(s) > max_length else s,"""""""Truncates the string to a maximum length.""""""
+if len(s) > max_length:
+return s[:max_length]
+else:
+return s",Yes,5,5,1.0
+def alternate_case(s):,"""""""Alternates case of each letter in the string.""""""",188,"result = []
+    for i, char in enumerate(s):
+        if i % 2 == 0:
+            result.append(char.lower())
+        else:
+            result.append(char.upper())
+    return """".join(result)","""""""Alternates case of each letter in the string.""""""
+return ''.join(c for c in s if c.isalpha())",Yes,1,5,0.2
+def remove_duplicate_words(s):,"""""""Removes duplicate words from the string, keeping the first occurrence.""""""",189,"words = s.split()
+    seen = set()
+    result = []
+    for word in words:
+        if word not in seen:
+            seen.add(word)
+            result.append(word)
+    return "" "".join(result)","""""""Removes duplicate words from the string, keeping the first occurrence.""""""
+return ''.join(sorted(s))",Yes,1,5,0.2
+def most_frequent_char(s):,"""""""Finds the most frequently occurring character in the string.""""""",156,"from collections import Counter
+    if not s:
+        return """"
+    counts = Counter(s)
+    most_common = counts.most_common(1)[0]
+    return most_common[0]","""""""Finds the most frequently occurring character in the string.""""""
+return max(set(s), key=len)",Yes,2,5,0.4
+"def wrap_text(s, width):","""""""Wraps text to a specific width.""""""",188,"lines = []
+    while len(s) > width:
+        line = s[:width].rsplit("" "", 1)[0]
+        lines.append(line)
+        s = s[len(line):].strip()
+    lines.append(s)
+    return ""\n"".join(lines)","""""""Wraps text to a specific width.""""""
+return s.replace('\n','').replace('\r','')[:width]",Yes,2,5,0.4
+def longest_word(s):,"""""""Finds the longest word in the string.""""""",87,"words = s.split()
+    longest = max(words, key=len) if words else """"
+    return longest","""""""Finds the longest word in the string.""""""
+return max(s, key=len)",Yes,0,5,0.0
+"def censor_words(s, bad_words):","""""""Censors specified words in the string with asterisks.""""""",159,"words = s.split()
+    censored = [
+        ""*"" * len(word) if word.lower() in bad_words else word
+        for word in words
+    ]
+    return "" "".join(censored)","""""""Censors specified words in the string with asterisks.""""""
+return ''.join(c for c in s if c not in bad_words)",Yes,2,5,0.4
+def reverse_words_order(s):,"""""""Reverses the order of words in the string.""""""",50,"words = s.split()
+    return "" "".join(words[::-1])","""""""Reverses the order of words in the string.""""""
+return s[::-1]",Yes,1,5,0.2
+def compress_string(s):,"""""""Compresses a string by collapsing consecutive characters.""""""",336,"if not s:
+        return """"
+    result = []
+    count = 1
+    for i in range(1, len(s)):
+        if s[i] == s[i - 1]:
+            count += 1
+        else:
+            result.append(s[i - 1] + (str(count) if count > 1 else """"))
+            count = 1
+    result.append(s[-1] + (str(count) if count > 1 else """"))
+    return """".join(result)","""""""Compresses a string by collapsing consecutive characters.""""""
+return s.replace(' ', '')",Yes,3,5,0.6
+def snake_to_camel_case(s):,"""""""Converts snake_case to camelCase.""""""",91,"parts = s.split('_')
+    return parts[0] + ''.join(word.capitalize() for word in parts[1:])","""""""Converts snake_case to camelCase.""""""
+return ''.join(c.title() for c in s.split('_'))",Yes,1,5,0.2
+def camel_to_snake_case(s):,"""""""Converts camelCase to snake_case.""""""",176,"result = []
+    for char in s:
+        if char.isupper():
+            result.append(""_"" + char.lower())
+        else:
+            result.append(char)
+    return """".join(result)","""""""Converts camelCase to snake_case.""""""
+return ''.join(x.title() for x in re.split('([A-Z][a-z]+)', s))",Yes,0,5,0.0
+def mask_sensitive_info(s):,"""""""Masks sensitive information, such as email or phone numbers.""""""",167,"import re
+    s = re.sub(r'\b(\w{3})\w+@(\w+\.\w+)', r'\1****@\2', s)  # Mask email
+    s = re.sub(r'\b(\d{3})\d+(\d{2})\b', r'\1****\2', s)  # Mask phone
+    return s","""""""Masks sensitive information, such as email or phone numbers.""""""
+if s is None:
+return None
+if s.lower() == 'none':
+return None
+if s.lower() == 'true':
+return True
+if s.lower() == 'false':
+return False
+return s",Yes,1,5,0.2
+"def word_wrap_with_indent(s, width, indent=0):","""""""Wraps text to a specific width with an optional indent.""""""",236,"lines = []
+    while len(s) > width - indent:
+        line = s[:width - indent].rsplit("" "", 1)[0]
+        lines.append("" "" * indent + line)
+        s = s[len(line):].strip()
+    lines.append("" "" * indent + s)
+    return ""\n"".join(lines)","""""""Wraps text to a specific width with an optional indent.""""""
+return s.wrap(width, indent)",Yes,0,5,0.0
+def count_word_frequencies(s):,"""""""Counts the frequency of each word in the string.""""""",93,"from collections import Counter
+    words = s.lower().split()
+    return dict(Counter(words))","""""""Counts the frequency of each word in the string.""""""
+return Counter(s).most_common(1)[0][0]",Yes,0,5,0.0

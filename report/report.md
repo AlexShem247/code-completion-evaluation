@@ -160,40 +160,42 @@ For the metrics, I decided to use the following 4:
 1. **Exact Match**: Comparing using the `==` operator.
 2. **chrf**: Compares character-level n-grams focusing on precision, recall, and F-score.
 3. **Levenshtein Distance**: Measures the minimum number of edits (insertions, deletions, or substitutions) needed to transform one string into another.
-4. **Function Testing**: Comparing the code, based purely on its behaviour. This can be achieved by running the original code vs the predicted code and comparing results. If the generated code does not compile, then it treats it as an accuracy of 0.
+4. **Jaro Distance**: A measure of edit distance between two strings as a value between 0 and 1.
+5. **Function Testing**: Comparing the code, based purely on its behaviour. This can be achieved by running the original code vs the predicted code and comparing results. If the generated code does not compile, then it treats it as an accuracy of 0.
 
 I decided to write code for these metrics in `pred_accuracy_by_size.py` and see what they thought of the AI's response for the same dataset as before.
 
 Here are the responses, as well as the time it took:
 
-| Metric             | AI's Accuracy | Avg. Time Taken to Run (per test) (ms) |
-|--------------------|---------------|----------------------------------------|
-| Exact Match        | 0.143         | <1                                     |
-| chrf               | 0.365         | <1                                     |
-| Levenshtein        | 0.726         | 9860                                   |
-| Functional Testing | n/a           | n/a                                    |
+| Metric             | AI's Accuracy |
+|--------------------|---------------|
+| Exact Match        | 0.139474      | 
+| chrf               | 0.754016      |
+| Levenshtein        | 0.845843      | 
+| Jaro               | 0.893907      |
+| Functional Testing | n/a           |
 
 1. **Exact Match** worked by checking whether the correct answer was `in` the generated text, rather than just a simple equality to give it a bit more tolerance.
 2. **chf** was achieved by using `pairwise_chrf()` function from the library [fastchrf](https://pypi.org/project/fastchrf/).
-3. **Levenshtein** distance only works when the string being compared to are the same length. For this, I decided to split the predicted text up into the same size as the correct text and use the best match. This however is a too slow process to practically run, although it resulted in having the highest _"AI's accuracy"_ rating compared to all of them.
-4. I did not do **Functional Testing** **here** because it is not best here. It only works when the functionality of the function can be fully described with units tests, hence can only test code with a test suite. 
+3. **Levenshtein** distance and **Jaro** was achieved by using the `distance()` and `jaro()` function respectively from the library [Levenshtein](https://pypi.org/project/python-Levenshtein/)
+5. I did not do **Functional Testing** **here** because it is not best here. It only works when the functionality of the function can be fully described with units tests, hence can only test code with a test suite. 
       * Since this quite limits the code that we can run it on, I will do it in a **later section**, with sample code with functions that has been specially written to be mathematically pure and have a test suite.
 
-Out of all the metrics here, the one that reflects the true accuracy the most is **chrf**. Therefore, I will use **chrf** as the metric and run the AI code completion on a large dataset, consisting with common code, code working with third-party libraries, graphical-user interfaces, game development, etc.
+Out of all the metrics here, the one that is the closest to the true accuracy is **chrf**. Therefore, I will use **chrf** as the metric and run the AI code completion on a large dataset, consisting with common code, code working with third-party libraries, graphical-user interfaces, game development, etc.
 
 ## Testing the AI on a Large Dataset
 
-The combined total from the datasets in `dataset/` consist of 179 examples of functions with missing code.
+The combined total from the datasets in `dataset/missing_line_datasets  ` consist of 179 examples of functions with missing code.
 
 After testing the AI with functions consisting of varying numbers of missing words, the results with **chrf** are as follows:
 
-![image info](img/Figure_1.png)
+![image info](../evaluation_results/img/Figure_1.png)
 
 The vertical bars represent the **min** and **max** score of **chrf** for that category (9 only had one sample).
 
-The Overall Average Accuracy was **0.425**, which is not too far off from the sample (human-measured) average of **0.5**.
+The Overall Average Accuracy was **0.724016**, which is higher than the sample (human-measured) average of **0.5**.
 
-Surprisingly, I thought that the more missing words, the less likely the AI was to predict them, however it does not seem to be the case. Is it the AI, or is it the metric that just commonly results in a score of 0.5?
+Surprisingly, I thought that the more missing words, the less likely the AI was to predict them, however it does not seem to be the case. Perhaps the metric is too generous with its scoring.
 
 # 4. Testing the Code Written by the AI
 
@@ -234,7 +236,7 @@ Next, I created a file called `func_gen_accuracy.py`, which will test the AI gen
 
 To get the Python code evalution working, I first created a dummy tester, which just tested the function using the original function body.
 
-This can be found in function `test_func_dummy()`. The string to be executed looks something like this:
+This can be found in function `testFunc()`. The string to be executed looks something like this:
 ```python
 import unittest
 class TestFunc(unittest.TestCase):
@@ -261,7 +263,7 @@ Now, all I had to do was replace the function body, the response made from the A
 ### Results
 After running the code on all 36 examples and plotted the results on a graph, the results are as follows:
 
-![image info](img/Figure_2.png)
+![image info](../evaluation_results/img/Figure_2.png)
 
 The overall accuracy was 0.464. It seemed that the AI was quite good when the functions were of a small size (< 60 characters). When it got larger, the accuracy went down and there were no results with perfect accuracy.
 
@@ -275,7 +277,7 @@ When running the test, I gave the AI both the header of the function and a docst
 
 I repeated the experiment, removing the docstrings from the input to the model and repeated the experiment. The results are as follows:
 
-![image info](img/Figure_3.png)
+![image info](../evaluation_results/img/Figure_3.png)
 
 The overall accuracy was 0.408. This is a smaller value than previously, however looking at the graph, the result seem to be closer together. There are more 1.0 results for small functions of size < 60, and more 0.0 results overall. It looks like the AI could either entirely understand what the function was supposed to do and can correctly implement it, or it had no idea or completely generated an incorrect function.
 
@@ -287,10 +289,12 @@ In conclusion, the evaluation of the TinyStarCoderPy AI code completion tool rev
 There did not seem to be an exact link between number of missing words and its accuracy, resulting in an overall accuracy of approximately 50% in the initial test.
 
 2. Automating the evaluation process using metrics such as Exact Match, chrf and Levenshtein Distance could allow use to test the AI with many more examples than before.
-Among these, chrf seem the most reliable indicator of accuracy, with results quite similar with the manual (human) assessments.
-When tested on with a larger dataset, the AI produced an average accuracy of 42.5%, suggesting that sometimes it could produce useful results, there is a big room for improvement, particularly when generating code when working with more complex code.
+Among these, chrf seem the most reliable indicator of accuracy, with results that were the most similar with the manual (human) assessments, but still quite high.
+When tested on with a larger dataset, the AI produced an average accuracy of 72.4%, suggesting that sometimes it could produce useful results, the code it outputed was not perfect, particularly when generating code when working with more complex code.
 
 3. A second test, consisted the generation of entire functions, rather than finishing lines, resulted in an overall accuracy of 40.8% and a higher 46.4% when help was provided to the AI in the form of function documentation.
 The AI tended to do better with smaller, more straightforward functions, however as complexity increased, the AI's performance tended to decline, and it was not able to produce correct functions. 
 
-Overall, these results demonstrate the need for ongoing improvements on AI code completion tools, in particularly in handling harder coding tasks. Future work could involve expanding the dataset and enhancing the AI to improve it ability to predict and generate relevant code more reliably. It would be interesting to run this test using a different AI model, such as GPT and see if it can do better than _TinyStarCoderPy_.
+Overall, these results demonstrate the need for ongoing improvements on AI code completion tools, in particularly in handling harder coding tasks. The AI was quite good at generating similar looking code compared to the correct code, however when it was compared against functionality, the results were not very good. 
+
+Future work could involve expanding the dataset and enhancing the AI to improve it ability to predict and generate relevant code more reliably. It would be interesting to run this test using a different AI model, such as GPT and see if it can do better than _TinyStarCoderPy_.
