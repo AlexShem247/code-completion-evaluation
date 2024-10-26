@@ -297,7 +297,7 @@ I repeated the experiment, removing the docstrings from the input to the model a
 
 The overall accuracy was 0.408. This is a smaller value than previously, however looking at the graph, the results seem to be closer together. There are more than 1.0 results for small functions of size < 60, and more 0.0 results overall. It looks like the AI could either entirely understand what the function was supposed to do and can correctly implement it, or it had no idea or completely generated an incorrect function.
 
-# 6. Conclusions of the Experiment
+# 6. Conclusion of the Experiment
 
 In conclusion, the evaluation of the TinyStarCoderPy AI code completion tool revealed a mixed performance in predicting and generating code.
 
